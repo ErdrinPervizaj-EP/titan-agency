@@ -1,4 +1,5 @@
 import DashboardMock from './mocks/DashboardMock';
+import Counter from './Counter';
 import { useT } from '../i18n/useLang';
 import { useParallax } from '../hooks/useParallax';
 
@@ -55,7 +56,9 @@ export default function Hero() {
           <div className="mx-auto mt-12 grid max-w-2xl grid-cols-2 gap-x-6 gap-y-8 sm:mt-14 sm:grid-cols-4">
             {t.hero.stats.map(([stat, label]) => (
               <div key={label} className="text-center sm:text-left">
-                <p className="font-display text-2xl font-bold text-navy-900 sm:text-3xl">{stat}</p>
+                <p className="font-display text-2xl font-bold text-navy-900 sm:text-3xl">
+                  <Counter value={stat} />
+                </p>
                 <p className="mt-1 text-xs text-navy-400 sm:text-sm">{label}</p>
               </div>
             ))}

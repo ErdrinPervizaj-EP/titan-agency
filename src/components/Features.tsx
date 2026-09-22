@@ -1,4 +1,5 @@
 import { useT } from '../i18n/useLang';
+import Reveal from './Reveal';
 
 const ICONS = [
   <path d="M4 4h16v12H8l-4 4V4Z" strokeWidth="1.6" strokeLinejoin="round" />,
@@ -27,18 +28,17 @@ export default function Features() {
 
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {t.services.items.map((f, i) => (
-            <div
-              key={f.title}
-              className="group rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-            >
-              <div className={`flex h-11 w-11 items-center justify-center rounded-xl ${COLORS[i % COLORS.length]}`}>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  {ICONS[i % ICONS.length]}
-                </svg>
+            <Reveal key={f.title} delay={(i % 3) * 80}>
+              <div className="group h-full rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+                <div className={`flex h-11 w-11 items-center justify-center rounded-xl ${COLORS[i % COLORS.length]}`}>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    {ICONS[i % ICONS.length]}
+                  </svg>
+                </div>
+                <h3 className="font-display mt-5 text-lg font-semibold text-navy-900">{f.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-navy-500">{f.desc}</p>
               </div>
-              <h3 className="font-display mt-5 text-lg font-semibold text-navy-900">{f.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-navy-500">{f.desc}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

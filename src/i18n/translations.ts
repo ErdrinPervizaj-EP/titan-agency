@@ -34,6 +34,10 @@ export const translations = {
       label: 'Everything under one roof',
       items: ['Managed IT', 'Networking', 'Cybersecurity', 'Cloud', 'Custom Software', 'IT Consulting', 'Help Desk'],
     },
+    logoBar: {
+      label: 'Trusted by teams across Kosovo, Albania, and remote worldwide',
+      logos: ['Acme Retail Co.', 'Brightline Logistics', 'Norwood Legal', 'Meridian Health Group', 'Vantage Manufacturing', 'Alpine Financial Group'],
+    },
     services: {
       tag: 'What We Do',
       title: 'IT services built around your business',
@@ -126,6 +130,37 @@ export const translations = {
         },
       ],
       badges: ['CompTIA Partner', 'Microsoft Partner', 'SOC 2 Type II — In Progress', '4.9/5 · 60+ reviews'],
+    },
+    enterprise: {
+      tag: 'Enterprise-Ready',
+      title: 'Built to satisfy IT and security reviews, not just budgets',
+      sub: 'Whether you\'re a 12-person team or a distributed enterprise, the same controls apply to every account.',
+      items: [
+        {
+          title: 'SOC 2 Type II — in progress',
+          desc: 'Formal audit underway; interim controls documentation available under NDA on request.',
+        },
+        {
+          title: 'GDPR-aligned data handling',
+          desc: 'Data processing agreements, EU data residency options, and documented retention policies.',
+        },
+        {
+          title: '99.9% uptime SLA',
+          desc: 'Backed by financial credits on Growth and Enterprise plans, with public status page.',
+        },
+        {
+          title: 'Dedicated account management',
+          desc: 'A named engineer and account manager for every Enterprise contract — not a rotating queue.',
+        },
+        {
+          title: 'Least-privilege access model',
+          desc: 'Gateway credentials never touch the browser UI; every action is scoped, logged, and auditable.',
+        },
+        {
+          title: 'Custom contracts & procurement',
+          desc: 'MSAs, DPAs, and security questionnaires handled directly — we work inside your procurement process.',
+        },
+      ],
     },
     productSuite: {
       tag: 'Product Suite',
@@ -346,6 +381,10 @@ export const translations = {
       label: 'Alles aus einer Hand',
       items: ['Managed IT', 'Netzwerktechnik', 'Cybersicherheit', 'Cloud', 'Individuelle Software', 'IT-Beratung', 'Help Desk'],
     },
+    logoBar: {
+      label: 'Vertraut von Teams im Kosovo, in Albanien und remote weltweit',
+      logos: ['Acme Retail Co.', 'Brightline Logistics', 'Norwood Legal', 'Meridian Health Group', 'Vantage Manufacturing', 'Alpine Financial Group'],
+    },
     services: {
       tag: 'Unsere Leistungen',
       title: 'IT-Dienstleistungen für Ihr Unternehmen',
@@ -438,6 +477,37 @@ export const translations = {
         },
       ],
       badges: ['CompTIA Partner', 'Microsoft Partner', 'SOC 2 Type II — in Vorbereitung', '4,9/5 · 60+ Bewertungen'],
+    },
+    enterprise: {
+      tag: 'Enterprise-Ready',
+      title: 'Für IT- und Sicherheitsprüfungen gebaut — nicht nur fürs Budget',
+      sub: 'Ob 12-köpfiges Team oder verteiltes Unternehmen — für jeden Account gelten dieselben Kontrollen.',
+      items: [
+        {
+          title: 'SOC 2 Type II — in Vorbereitung',
+          desc: 'Formales Audit läuft; Dokumentation der Übergangskontrollen auf Anfrage unter NDA verfügbar.',
+        },
+        {
+          title: 'DSGVO-konforme Datenverarbeitung',
+          desc: 'Auftragsverarbeitungsverträge, EU-Datenresidenz-Optionen und dokumentierte Aufbewahrungsrichtlinien.',
+        },
+        {
+          title: '99,9 % Verfügbarkeits-SLA',
+          desc: 'Mit finanziellen Gutschriften bei Growth- und Enterprise-Plänen sowie öffentlicher Status-Seite.',
+        },
+        {
+          title: 'Fester Ansprechpartner',
+          desc: 'Ein benannter Techniker und Account Manager für jeden Enterprise-Vertrag — keine wechselnde Warteschlange.',
+        },
+        {
+          title: 'Least-Privilege-Zugriffsmodell',
+          desc: 'Gateway-Zugangsdaten erreichen nie die Browser-UI; jede Aktion ist eingegrenzt, protokolliert und auditierbar.',
+        },
+        {
+          title: 'Individuelle Verträge & Beschaffung',
+          desc: 'MSAs, AVVs und Sicherheitsfragebögen bearbeiten wir direkt — passend zu Ihrem Beschaffungsprozess.',
+        },
+      ],
     },
     productSuite: {
       tag: 'Produktfamilie',

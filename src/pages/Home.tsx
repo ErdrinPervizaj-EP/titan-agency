@@ -1,9 +1,11 @@
 import Hero from '../components/Hero';
+import LogoMarquee from '../components/LogoMarquee';
 import TrustBar from '../components/TrustBar';
 import Features from '../components/Features';
 import Technologies from '../components/Technologies';
 import ProductShowcase from '../components/ProductShowcase';
 import CaseStudies from '../components/CaseStudies';
+import Enterprise from '../components/Enterprise';
 import Testimonials from '../components/Testimonials';
 import Pricing from '../components/Pricing';
 import Faq from '../components/Faq';
@@ -32,11 +34,13 @@ export default function Home() {
         ]}
       />
       <Hero />
+      <LogoMarquee />
       <TrustBar />
       <Features />
       <Technologies />
       <ProductShowcase />
       <CaseStudies />
+      <Enterprise />
       <Testimonials />
       <Pricing />
       <Faq />
