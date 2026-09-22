@@ -66,7 +66,7 @@ export default function Navbar() {
                     return (
                       <Link
                         key={s.slug}
-                        to={`${lp('/services')}#${s.slug}`}
+                        to={`${lp('/services')}/${s.slug}`}
                         className="flex items-start gap-3 rounded-xl p-3 transition hover:bg-slate-50"
                       >
                         <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${SERVICE_COLORS[i % SERVICE_COLORS.length]}`}>
@@ -177,7 +177,7 @@ export default function Navbar() {
                   return (
                     <Link
                       key={s.slug}
-                      to={`${lp('/services')}#${s.slug}`}
+                      to={`${lp('/services')}/${s.slug}`}
                       onClick={() => setOpen(false)}
                       className="flex items-center gap-3"
                     >

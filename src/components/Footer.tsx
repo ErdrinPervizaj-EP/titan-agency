@@ -9,10 +9,12 @@ export default function Footer() {
   const serviceSlugs = t.services.items.slice(0, 4).map((s) => s.slug);
   const productLinks: (string | null)[] = [lp('/titandesk'), `${lp('/')}#products`, `${lp('/')}#products`, `${lp('/')}#pricing`];
 
+  const companyLinks: (string | null)[] = [null, lp('/careers'), null, `${lp('/')}#contact`];
+
   const COLS = [
-    { heading: t.footer.servicesHeading, links: t.footer.services, hrefs: serviceSlugs.map((s) => `${lp('/services')}#${s}`) },
+    { heading: t.footer.servicesHeading, links: t.footer.services, hrefs: serviceSlugs.map((s) => `${lp('/services')}/${s}`) },
     { heading: t.footer.productsHeading, links: t.footer.products, hrefs: productLinks },
-    { heading: t.footer.companyHeading, links: t.footer.company, hrefs: null },
+    { heading: t.footer.companyHeading, links: t.footer.company, hrefs: companyLinks },
   ];
 
   return (

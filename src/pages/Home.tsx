@@ -2,6 +2,7 @@ import Hero from '../components/Hero';
 import LogoMarquee from '../components/LogoMarquee';
 import TrustBar from '../components/TrustBar';
 import Features from '../components/Features';
+import Process from '../components/Process';
 import Technologies from '../components/Technologies';
 import ProductShowcase from '../components/ProductShowcase';
 import CaseStudies from '../components/CaseStudies';
@@ -37,6 +38,7 @@ export default function Home() {
       <LogoMarquee />
       <TrustBar />
       <Features />
+      <Process />
       <Technologies />
       <ProductShowcase />
       <CaseStudies />

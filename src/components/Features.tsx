@@ -24,7 +24,7 @@ export default function Features() {
             return (
               <Reveal key={f.title} delay={(i % 3) * 80}>
                 <Link
-                  to={`${lp('/services')}#${f.slug}`}
+                  to={`${lp('/services')}/${f.slug}`}
                   className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:border-indigo-200 hover:shadow-lg"
                 >
                   <div className={`flex h-11 w-11 items-center justify-center rounded-xl ${SERVICE_COLORS[i % SERVICE_COLORS.length]}`}>

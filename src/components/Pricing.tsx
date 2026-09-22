@@ -33,9 +33,8 @@ export default function Pricing() {
               <h3 className="font-display text-xl font-bold text-navy-900">{p.name}</h3>
               <p className="mt-1.5 text-sm text-navy-400">{p.desc}</p>
 
-              <div className="mt-6 flex items-baseline gap-1">
-                <span className="font-display text-4xl font-bold text-navy-900">{p.price}</span>
-                <span className="text-sm text-navy-400">{p.period}</span>
+              <div className="mt-6 inline-flex w-fit items-center rounded-md bg-slate-100 px-3 py-1.5 text-xs font-semibold text-navy-600">
+                {p.scope}
               </div>
 
               <ul className="mt-7 flex-1 space-y-3.5">
@@ -60,6 +59,8 @@ export default function Pricing() {
             </div>
           ))}
         </div>
+
+        <p className="mt-10 text-center text-sm text-navy-400">{t.pricing.quoteNote}</p>
       </div>
     </section>
   );
