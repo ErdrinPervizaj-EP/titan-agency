@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import logoMark from '../assets/logo-mark.svg';
+import ProductIcon from './ProductIcon';
 
 const LINKS = [
-  { href: '#services', label: 'Services' },
-  { href: '#pricing', label: 'Pricing' },
-  { href: '#faq', label: 'FAQ' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/#services', label: 'Services' },
+  { href: '/#pricing', label: 'Pricing' },
+  { href: '/#faq', label: 'FAQ' },
+  { href: '/#contact', label: 'Contact' },
 ];
 
 const PRODUCTS = [
-  { name: 'TitanDesk', tagline: 'Service desk, CRM & network ops', status: 'Live', color: 'bg-indigo-500' },
-  { name: 'TitanShield', tagline: 'Continuous security monitoring', status: 'Coming soon', color: 'bg-gold-500' },
-  { name: 'TitanCloud', tagline: 'Cloud cost & infrastructure control', status: 'Coming soon', color: 'bg-teal-500' },
-];
+  { key: 'titandesk', name: 'TitanDesk', tagline: 'Service desk, CRM & network ops', status: 'Live', to: '/titandesk' },
+  { key: 'titanshield', name: 'TitanShield', tagline: 'Continuous security monitoring', status: 'Coming soon', to: '/#products' },
+  { key: 'titancloud', name: 'TitanCloud', tagline: 'Cloud cost & infrastructure control', status: 'Coming soon', to: '/#products' },
+] as const;
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -32,10 +34,10 @@ export default function Navbar() {
       }`}
     >
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
-        <a href="#top" className="flex items-center gap-2.5">
+        <Link to="/" className="flex items-center gap-2.5">
           <img src={logoMark} alt="Titan Network" className="h-8 w-8" />
           <span className="font-display text-lg font-bold text-navy-900">Titan Network</span>
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-9 lg:flex">
           <div
@@ -44,7 +46,7 @@ export default function Navbar() {
             onMouseLeave={() => setProductsOpen(false)}
           >
             <a
-              href="#products"
+              href="/#products"
               className="flex items-center gap-1.5 text-sm font-medium text-navy-500 transition-colors hover:text-navy-900"
             >
               Products
@@ -57,14 +59,12 @@ export default function Navbar() {
               <div className="absolute left-1/2 top-full w-80 -translate-x-1/2 pt-3">
                 <div className="rounded-2xl border border-slate-200 bg-white p-2 shadow-xl shadow-navy-900/10">
                   {PRODUCTS.map((p) => (
-                    <a
+                    <Link
                       key={p.name}
-                      href="#products"
+                      to={p.to}
                       className="flex items-start gap-3 rounded-xl p-3 transition hover:bg-slate-50"
                     >
-                      <span className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-xs font-bold text-white ${p.color}`}>
-                        {p.name[5]}
-                      </span>
+                      <ProductIcon product={p.key} size={32} />
                       <span className="min-w-0">
                         <span className="flex items-center gap-2">
                           <span className="text-sm font-semibold text-navy-900">{p.name}</span>
@@ -78,7 +78,7 @@ export default function Navbar() {
                         </span>
                         <span className="mt-0.5 block text-xs text-navy-500">{p.tagline}</span>
                       </span>
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -96,9 +96,12 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden items-center gap-5 lg:flex">
+          <Link to="/login" className="text-sm font-medium text-navy-500 transition-colors hover:text-navy-900">
+            Log in
+          </Link>
           <a
-            href="#contact"
+            href="/#contact"
             className="rounded-full bg-indigo-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition hover:-translate-y-0.5 hover:bg-indigo-600"
           >
             Get a Free Assessment
@@ -123,20 +126,13 @@ export default function Navbar() {
               <p className="mb-3 text-xs font-bold uppercase tracking-widest text-navy-400">Products</p>
               <div className="space-y-3">
                 {PRODUCTS.map((p) => (
-                  <a
-                    key={p.name}
-                    href="#products"
-                    onClick={() => setOpen(false)}
-                    className="flex items-center gap-3"
-                  >
-                    <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-xs font-bold text-white ${p.color}`}>
-                      {p.name[5]}
-                    </span>
+                  <Link key={p.name} to={p.to} onClick={() => setOpen(false)} className="flex items-center gap-3">
+                    <ProductIcon product={p.key} size={32} />
                     <span>
                       <span className="block text-sm font-medium text-navy-700">{p.name}</span>
                       <span className="block text-xs text-navy-400">{p.status}</span>
                     </span>
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -150,8 +146,11 @@ export default function Navbar() {
                 {l.label}
               </a>
             ))}
+            <Link to="/login" onClick={() => setOpen(false)} className="text-base font-medium text-navy-700">
+              Log in
+            </Link>
             <a
-              href="#contact"
+              href="/#contact"
               onClick={() => setOpen(false)}
               className="mt-2 rounded-full bg-indigo-500 px-5 py-3 text-center text-sm font-semibold text-white"
             >

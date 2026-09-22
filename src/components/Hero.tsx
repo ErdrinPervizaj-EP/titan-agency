@@ -54,7 +54,7 @@ export default function Hero() {
               ['120+', 'Clients Supported'],
               ['99.9%', 'Network Uptime'],
               ['24/7', 'Monitoring & Support'],
-              ['9+', 'Years in Business'],
+              ['3+', 'Years in Business'],
             ].map(([stat, label]) => (
               <div key={label} className="text-center sm:text-left">
                 <p className="font-display text-3xl font-bold text-navy-900">{stat}</p>

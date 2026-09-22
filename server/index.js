@@ -39,6 +39,23 @@ app.post('/api/contact', (req, res) => {
   res.status(201).json({ ok: true });
 });
 
+const DEMO_EMAIL = 'demo@titannetwork.io';
+const DEMO_PASSWORD = 'Demo1234!';
+
+app.post('/api/login', (req, res) => {
+  const { email, password } = req.body ?? {};
+
+  if (!email || !password) {
+    return res.status(400).json({ error: 'Email and password are required.' });
+  }
+
+  if (email !== DEMO_EMAIL || password !== DEMO_PASSWORD) {
+    return res.status(401).json({ error: 'Invalid email or password.' });
+  }
+
+  res.status(200).json({ ok: true, user: { email, name: 'Demo User' } });
+});
+
 app.get('/api/health', (_req, res) => res.json({ ok: true }));
 
 const PORT = process.env.PORT || 4200;
