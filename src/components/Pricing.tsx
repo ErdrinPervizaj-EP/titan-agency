@@ -1,59 +1,21 @@
-const PLANS = [
-  {
-    name: 'Starter',
-    desc: 'For small teams needing reliable support',
-    price: '$49',
-    period: '/user/mo',
-    features: ['Help desk & ticketing', 'Business hours support', 'Basic network monitoring', 'Email support'],
-    cta: 'Get Started',
-    featured: false,
-  },
-  {
-    name: 'Growth',
-    desc: 'For growing companies managing multiple sites',
-    price: '$89',
-    period: '/user/mo',
-    features: [
-      'Everything in Starter',
-      '24/7 monitoring & alerts',
-      'Network & device management',
-      'Quarterly security audits',
-      'Priority support',
-    ],
-    cta: 'Get Started',
-    featured: true,
-  },
-  {
-    name: 'Enterprise',
-    desc: 'For organizations with custom needs',
-    price: 'Custom',
-    period: '',
-    features: [
-      'Everything in Growth',
-      'Dedicated account manager',
-      'Custom software & integrations',
-      'On-site support options',
-      '24/7 SLA-backed response',
-    ],
-    cta: 'Talk to Sales',
-    featured: false,
-  },
-];
+import { useT } from '../i18n/useLang';
 
 export default function Pricing() {
+  const t = useT();
+
   return (
     <section id="pricing" className="py-28">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-xs font-bold uppercase tracking-widest text-gold-600">Pricing</span>
+          <span className="text-xs font-bold uppercase tracking-widest text-gold-600">{t.pricing.tag}</span>
           <h2 className="font-display text-balance mt-4 text-3xl font-bold text-navy-900 sm:text-4xl">
-            Support plans that scale with your team
+            {t.pricing.title}
           </h2>
-          <p className="mt-4 text-navy-500">No setup fees. Cancel anytime. 14-day free trial on every plan.</p>
+          <p className="mt-4 text-navy-500">{t.pricing.sub}</p>
         </div>
 
         <div className="mt-16 grid gap-6 lg:grid-cols-3 lg:items-stretch">
-          {PLANS.map((p) => (
+          {t.pricing.plans.map((p) => (
             <div
               key={p.name}
               className={`relative flex flex-col rounded-2xl border p-8 ${
@@ -64,7 +26,7 @@ export default function Pricing() {
             >
               {p.featured && (
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-indigo-500 px-4 py-1 text-xs font-bold text-white">
-                  Most Popular
+                  {t.pricing.mostPopular}
                 </span>
               )}
               <h3 className="font-display text-xl font-bold text-navy-900">{p.name}</h3>

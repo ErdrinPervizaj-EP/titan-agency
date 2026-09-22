@@ -1,43 +1,20 @@
 import { useState } from 'react';
-
-const ITEMS = [
-  {
-    q: 'What kinds of businesses do you support?',
-    a: 'We work with small and mid-sized businesses across industries — anyone who needs reliable IT support, secure networks, or custom software without hiring a full in-house team.',
-  },
-  {
-    q: 'Is TitanDesk required if we hire Titan Network?',
-    a: "No. TitanDesk is a platform we built and use internally to deliver faster, more transparent support — but our services stand on their own regardless of the tools involved.",
-  },
-  {
-    q: 'Do you offer on-site support or remote only?',
-    a: 'Both. Most day-to-day support is handled remotely for speed, and our Enterprise plan includes on-site visits for hardware, networking, and infrastructure work.',
-  },
-  {
-    q: 'Can you build custom software for our business?',
-    a: "Yes — our engineering team builds everything from internal tools to client-facing platforms. TitanDesk itself started as a custom build for our own operations.",
-  },
-  {
-    q: 'What happens after my free trial ends?',
-    a: 'You can choose any support plan to continue exactly as configured, or we can help you transition off — no lock-in, no surprise fees.',
-  },
-];
+import { useT } from '../i18n/useLang';
 
 export default function Faq() {
+  const t = useT();
   const [open, setOpen] = useState(0);
 
   return (
     <section id="faq" className="bg-slate-50 py-28">
       <div className="mx-auto max-w-3xl px-6">
         <div className="text-center">
-          <span className="text-xs font-bold uppercase tracking-widest text-indigo-500">FAQ</span>
-          <h2 className="font-display mt-4 text-3xl font-bold text-navy-900 sm:text-4xl">
-            Frequently asked questions
-          </h2>
+          <span className="text-xs font-bold uppercase tracking-widest text-indigo-500">{t.faq.tag}</span>
+          <h2 className="font-display mt-4 text-3xl font-bold text-navy-900 sm:text-4xl">{t.faq.title}</h2>
         </div>
 
         <div className="mt-12 space-y-3">
-          {ITEMS.map((item, i) => {
+          {t.faq.items.map((item, i) => {
             const isOpen = open === i;
             return (
               <div key={item.q} className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">

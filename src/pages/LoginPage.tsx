@@ -1,10 +1,15 @@
 import { useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import logoMark from '../assets/logo-mark.svg';
+import { useT, useLocalizedPath } from '../i18n/useLang';
 
 type Status = 'idle' | 'sending' | 'error';
 
 export default function LoginPage() {
+  const t = useT();
+  const lp = useLocalizedPath();
+  const p = t.loginPage;
   const [status, setStatus] = useState<Status>('idle');
   const [error, setError] = useState('');
 
@@ -24,19 +29,23 @@ export default function LoginPage() {
       });
       const body = await res.json();
       if (!res.ok) {
-        setError(body.error ?? 'Invalid email or password.');
+        setError(body.error ?? p.errorGeneric);
         setStatus('error');
         return;
       }
       window.location.href = 'https://app.titandesk.io/dashboard';
     } catch {
-      setError('Something went wrong — please try again.');
+      setError(p.errorGeneric);
       setStatus('error');
     }
   }
 
   return (
     <section className="relative flex min-h-[calc(100vh-80px)] items-center justify-center overflow-hidden px-6 py-16">
+      <Helmet>
+        <title>{p.title} | Titan Network</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <div className="bg-grid pointer-events-none absolute inset-0 opacity-60" />
       <div
         className="pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full opacity-30 blur-3xl"
@@ -45,14 +54,14 @@ export default function LoginPage() {
 
       <div className="relative w-full max-w-md">
         <div className="mb-8 flex flex-col items-center text-center">
-          <Link to="/" className="flex items-center gap-2.5">
+          <Link to={lp('/')} className="flex items-center gap-2.5">
             <img src={logoMark} alt="Titan Network" className="h-9 w-9" />
           </Link>
-          <h1 className="font-display mt-5 text-2xl font-bold text-navy-900">Sign in to TitanDesk</h1>
+          <h1 className="font-display mt-5 text-2xl font-bold text-navy-900">{p.title}</h1>
           <p className="mt-2 text-sm text-navy-500">
-            Not a TitanDesk user?{' '}
-            <Link to="/titandesk" className="font-medium text-indigo-500 hover:text-indigo-600">
-              Learn more
+            {p.notUser}{' '}
+            <Link to={lp('/titandesk')} className="font-medium text-indigo-500 hover:text-indigo-600">
+              {p.learnMore}
             </Link>
           </p>
         </div>
@@ -87,13 +96,13 @@ export default function LoginPage() {
 
           <div className="my-6 flex items-center gap-3">
             <div className="h-px flex-1 bg-slate-200" />
-            <span className="text-xs text-navy-400">or</span>
+            <span className="text-xs text-navy-400">{p.or}</span>
             <div className="h-px flex-1 bg-slate-200" />
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="mb-1.5 block text-xs font-medium text-navy-500">Work email</label>
+              <label className="mb-1.5 block text-xs font-medium text-navy-500">{p.email}</label>
               <input
                 name="email"
                 type="email"
@@ -103,7 +112,7 @@ export default function LoginPage() {
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-xs font-medium text-navy-500">Password</label>
+              <label className="mb-1.5 block text-xs font-medium text-navy-500">{p.password}</label>
               <input
                 name="password"
                 type="password"
@@ -120,17 +129,15 @@ export default function LoginPage() {
               disabled={status === 'sending'}
               className="w-full rounded-full bg-indigo-500 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition hover:-translate-y-0.5 hover:bg-indigo-600 disabled:opacity-60"
             >
-              {status === 'sending' ? 'Signing in…' : 'Sign in'}
+              {status === 'sending' ? p.signingIn : p.signIn}
             </button>
           </form>
 
-          <p className="mt-5 text-center text-xs text-navy-400">
-            Demo credentials are pre-filled — just hit Sign in.
-          </p>
+          <p className="mt-5 text-center text-xs text-navy-400">{p.demoNote}</p>
         </div>
 
         <p className="mt-6 text-center text-sm text-navy-400">
-          <Link to="/" className="hover:text-navy-700">← Back to Titan Network</Link>
+          <Link to={lp('/')} className="hover:text-navy-700">{p.back}</Link>
         </p>
       </div>
     </section>

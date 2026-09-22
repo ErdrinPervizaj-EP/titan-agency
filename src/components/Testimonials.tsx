@@ -1,57 +1,56 @@
-const QUOTES = [
-  {
-    quote:
-      "Titan Network took over our IT within a week and our help desk tickets stopped piling up overnight. They actually pick up the phone.",
-    name: 'Sarah Whitfield',
-    role: 'Operations Director, Acme Retail Co.',
-  },
-  {
-    quote:
-      "We needed a network overhaul across four warehouses with zero downtime. They planned it in phases and delivered exactly on schedule.",
-    name: 'Marcus Ade',
-    role: 'IT Manager, Brightline Logistics',
-  },
-  {
-    quote:
-      'TitanDesk gave our small ops team the same visibility a much bigger company would have. Worth it for the reporting alone.',
-    name: 'Elena Novak',
-    role: 'Managing Partner, Norwood Legal',
-  },
-];
+import { useT } from '../i18n/useLang';
 
-const BADGES = ['CompTIA Partner', 'Microsoft Partner', 'SOC 2 Type II — In Progress', '4.9/5 · 60+ reviews'];
+function Star({ filled }: { filled: boolean }) {
+  return (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill={filled ? 'currentColor' : 'none'} className="text-gold-500">
+      <path
+        d="M12 2.5 15 9l7 1-5.2 4.9L18 22l-6-3.4L6 22l1.2-7.1L2 10l7-1 3-6.5Z"
+        stroke="currentColor"
+        strokeWidth={filled ? 0 : 1.4}
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 export default function Testimonials() {
+  const t = useT();
+
   return (
-    <section className="py-28">
+    <section id="reviews" className="py-28">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-xs font-bold uppercase tracking-widest text-indigo-500">Trusted By Clients</span>
+          <span className="text-xs font-bold uppercase tracking-widest text-indigo-500">{t.reviews.tag}</span>
           <h2 className="font-display text-balance mt-4 text-3xl font-bold text-navy-900 sm:text-4xl">
-            What our clients say
+            {t.reviews.title}
           </h2>
+          <div className="mt-4 flex items-center justify-center gap-1.5">
+            {[1, 2, 3, 4, 5].map((n) => (
+              <Star key={n} filled />
+            ))}
+            <span className="ml-2 text-sm text-navy-500">{t.reviews.rating}</span>
+          </div>
         </div>
 
         <div className="mt-14 grid gap-6 lg:grid-cols-3">
-          {QUOTES.map((t) => (
-            <div key={t.name} className="flex flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
-              <svg width="28" height="22" viewBox="0 0 28 22" fill="none" className="text-indigo-200">
-                <path
-                  d="M0 22V13.2C0 5.9 4.7 1.1 12.1 0v4.4C8.1 5.3 6 8 6 11.4h6.1V22H0Zm15.9 0V13.2c0-7.3 4.7-12.1 12.1-13.2v4.4c-4 .9-6.1 3.6-6.1 7h6.1V22H15.9Z"
-                  fill="currentColor"
-                />
-              </svg>
-              <p className="mt-4 flex-1 text-sm leading-relaxed text-navy-700">{t.quote}</p>
+          {t.reviews.quotes.map((r) => (
+            <div key={r.name} className="flex flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
+              <div className="flex gap-0.5">
+                {[1, 2, 3, 4, 5].map((n) => (
+                  <Star key={n} filled />
+                ))}
+              </div>
+              <p className="mt-4 flex-1 text-sm leading-relaxed text-navy-700">"{r.quote}"</p>
               <div className="mt-6">
-                <p className="text-sm font-semibold text-navy-900">{t.name}</p>
-                <p className="text-xs text-navy-400">{t.role}</p>
+                <p className="text-sm font-semibold text-navy-900">{r.name}</p>
+                <p className="text-xs text-navy-400">{r.role}</p>
               </div>
             </div>
           ))}
         </div>
 
         <div className="mt-14 flex flex-wrap items-center justify-center gap-3 border-t border-slate-200 pt-10">
-          {BADGES.map((b) => (
+          {t.reviews.badges.map((b) => (
             <span
               key={b}
               className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-navy-500"

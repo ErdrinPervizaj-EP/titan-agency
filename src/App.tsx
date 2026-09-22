@@ -14,8 +14,11 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/de" element={<Home />} />
           <Route path="/titandesk" element={<TitanDeskPage />} />
+          <Route path="/de/titandesk" element={<TitanDeskPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/de/login" element={<LoginPage />} />
         </Routes>
       </main>
       <Footer />

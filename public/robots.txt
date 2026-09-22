@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /login
+Disallow: /de/login
+
+Sitemap: https://titannetwork.io/sitemap.xml

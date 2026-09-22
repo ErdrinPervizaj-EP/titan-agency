@@ -90,9 +90,11 @@ export default function ProductTour() {
               <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
               <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
               <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
-              <span className="ml-4 rounded-md bg-navy-900 px-3 py-1 text-xs text-ink-500">app.titandesk.io</span>
+              <span className="ml-4 hidden rounded-md bg-navy-900 px-3 py-1 text-xs text-ink-500 sm:inline-block">app.titandesk.io</span>
             </div>
-            <Mock />
+            <div className="overflow-x-auto">
+              <Mock />
+            </div>
           </div>
         </div>
       </div>
