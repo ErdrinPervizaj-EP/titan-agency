@@ -1,0 +1,73 @@
+<svg viewBox="0 0 1200 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Titan Network">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B1220"/>
+      <stop offset="55%" stop-color="#131B33"/>
+      <stop offset="100%" stop-color="#1E2A5A"/>
+    </linearGradient>
+    <linearGradient id="bar1" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#F5B942"/>
+      <stop offset="100%" stop-color="#F7D488"/>
+    </linearGradient>
+    <linearGradient id="bar2" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#2FB3A6"/>
+      <stop offset="100%" stop-color="#6FE3D6"/>
+    </linearGradient>
+    <linearGradient id="bar3" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#4F63D2"/>
+      <stop offset="100%" stop-color="#8B9CF0"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#4F63D2" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#4F63D2" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M 34 0 L 0 0 0 34" fill="none" stroke="#FFFFFF" stroke-opacity="0.035" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="280" fill="url(#bg)"/>
+  <rect width="1200" height="280" fill="url(#grid)"/>
+  <circle cx="980" cy="60" r="260" fill="url(#glow)"/>
+
+  <!-- hexagon mark -->
+  <g transform="translate(96,140)">
+    <polygon points="0,-62 54,-31 54,31 0,62 -54,31 -54,-31"
+      fill="none" stroke="#7C8BE8" stroke-width="3.5" stroke-opacity="0.9"/>
+    <rect x="-30" y="-6" width="15" height="38" rx="3" fill="url(#bar1)"/>
+    <rect x="-7" y="-24" width="15" height="56" rx="3" fill="url(#bar2)"/>
+    <rect x="16" y="-38" width="15" height="70" rx="3" fill="url(#bar3)"/>
+  </g>
+
+  <!-- wordmark -->
+  <text x="200" y="130" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="56" font-weight="700" fill="#F4F6FB">
+    Titan Network
+  </text>
+  <text x="202" y="168" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="21" font-weight="400" fill="#A9B4D6">
+    One workspace for service desk, projects, leads, and network operations
+  </text>
+
+  <!-- module chips -->
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600">
+    <g transform="translate(202,204)">
+      <rect width="88" height="30" rx="15" fill="#1B274A" stroke="#33417A" stroke-width="1"/>
+      <text x="44" y="20" text-anchor="middle" fill="#CBD4F5">Tickets</text>
+    </g>
+    <g transform="translate(300,204)">
+      <rect width="98" height="30" rx="15" fill="#1B274A" stroke="#33417A" stroke-width="1"/>
+      <text x="49" y="20" text-anchor="middle" fill="#CBD4F5">Projects</text>
+    </g>
+    <g transform="translate(408,204)">
+      <rect width="80" height="30" rx="15" fill="#1B274A" stroke="#33417A" stroke-width="1"/>
+      <text x="40" y="20" text-anchor="middle" fill="#CBD4F5">Leads</text>
+    </g>
+    <g transform="translate(498,204)">
+      <rect width="88" height="30" rx="15" fill="#1B274A" stroke="#33417A" stroke-width="1"/>
+      <text x="44" y="20" text-anchor="middle" fill="#CBD4F5">People</text>
+    </g>
+    <g transform="translate(596,204)">
+      <rect width="98" height="30" rx="15" fill="#1B274A" stroke="#33417A" stroke-width="1"/>
+      <text x="49" y="20" text-anchor="middle" fill="#CBD4F5">Network</text>
+    </g>
+  </g>
+</svg>
