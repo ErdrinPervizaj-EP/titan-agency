@@ -6,10 +6,13 @@ export default function Footer() {
   const t = useT();
   const lp = useLocalizedPath();
 
+  const serviceSlugs = t.services.items.slice(0, 4).map((s) => s.slug);
+  const productLinks: (string | null)[] = [lp('/titandesk'), `${lp('/')}#products`, `${lp('/')}#products`, `${lp('/')}#pricing`];
+
   const COLS = [
-    { heading: t.footer.servicesHeading, links: t.footer.services },
-    { heading: t.footer.productsHeading, links: t.footer.products },
-    { heading: t.footer.companyHeading, links: t.footer.company },
+    { heading: t.footer.servicesHeading, links: t.footer.services, hrefs: serviceSlugs.map((s) => `${lp('/services')}#${s}`) },
+    { heading: t.footer.productsHeading, links: t.footer.products, hrefs: productLinks },
+    { heading: t.footer.companyHeading, links: t.footer.company, hrefs: null },
   ];
 
   return (
@@ -29,9 +32,9 @@ export default function Footer() {
             <div key={col.heading}>
               <h4 className="text-xs font-bold uppercase tracking-widest text-navy-400">{col.heading}</h4>
               <ul className="mt-4 space-y-3">
-                {col.links.map((l) => (
+                {col.links.map((l, i) => (
                   <li key={l}>
-                    <a href="#" className="text-sm text-navy-500 transition hover:text-navy-900">
+                    <a href={col.hrefs ? col.hrefs[i] ?? '#' : '#'} className="text-sm text-navy-500 transition hover:text-navy-900">
                       {l}
                     </a>
                   </li>

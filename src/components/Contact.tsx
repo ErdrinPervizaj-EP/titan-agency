@@ -75,7 +75,7 @@ export default function Contact() {
           <button
             type="submit"
             disabled={status === 'sending'}
-            className="w-full rounded-full bg-indigo-500 py-3.5 text-sm font-semibold text-white shadow-xl shadow-indigo-500/25 transition hover:-translate-y-0.5 hover:bg-indigo-600 disabled:opacity-60"
+            className="w-full rounded-lg bg-indigo-500 py-3.5 text-sm font-semibold text-white shadow-xl shadow-indigo-500/25 transition hover:-translate-y-0.5 hover:bg-indigo-600 disabled:opacity-60"
           >
             {status === 'sending' ? t.contact.sending : t.contact.submit}
           </button>

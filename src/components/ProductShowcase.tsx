@@ -32,7 +32,7 @@ export default function ProductShowcase() {
             <p className="mt-2 text-navy-500">{t.productSuite.titandeskDesc}</p>
             <Link
               to={lp('/titandesk')}
-              className="mt-6 inline-flex items-center gap-2 rounded-full bg-indigo-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition hover:-translate-y-0.5 hover:bg-indigo-600"
+              className="mt-6 inline-flex items-center gap-2 rounded-lg bg-indigo-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition hover:-translate-y-0.5 hover:bg-indigo-600"
             >
               {t.productSuite.explore}
             </Link>

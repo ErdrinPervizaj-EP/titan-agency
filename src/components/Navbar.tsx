@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import logoMark from '../assets/logo-mark.svg';
 import ProductIcon from './ProductIcon';
 import LanguageSwitcher from './LanguageSwitcher';
+import { SERVICE_ICONS, SERVICE_COLORS } from '../lib/icons';
 import { useT, useLocalizedPath } from '../i18n/useLang';
 
 export default function Navbar() {
@@ -11,6 +12,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -19,7 +21,6 @@ export default function Navbar() {
   }, []);
 
   const LINKS = [
-    { href: `${lp('/')}#services`, label: t.nav.services },
     { href: `${lp('/')}#case-studies`, label: t.nav.caseStudies },
     { href: `${lp('/')}#pricing`, label: t.nav.pricing },
     { href: `${lp('/')}#faq`, label: t.nav.faq },
@@ -45,6 +46,45 @@ export default function Navbar() {
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">
+          {/* Services mega-menu */}
+          <div className="relative" onMouseEnter={() => setServicesOpen(true)} onMouseLeave={() => setServicesOpen(false)}>
+            <Link
+              to={lp('/services')}
+              className="flex items-center gap-1.5 text-sm font-medium text-navy-500 transition-colors hover:text-navy-900"
+            >
+              {t.nav.services}
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" className={`transition-transform ${servicesOpen ? 'rotate-180' : ''}`}>
+                <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
+
+            {servicesOpen && (
+              <div className="absolute left-1/2 top-full w-[560px] -translate-x-1/2 pt-3">
+                <div className="grid grid-cols-2 gap-1 rounded-2xl border border-slate-200 bg-white p-3 shadow-xl shadow-navy-900/10">
+                  {t.services.items.map((s, i) => {
+                    const Icon = SERVICE_ICONS[i % SERVICE_ICONS.length];
+                    return (
+                      <Link
+                        key={s.slug}
+                        to={`${lp('/services')}#${s.slug}`}
+                        className="flex items-start gap-3 rounded-xl p-3 transition hover:bg-slate-50"
+                      >
+                        <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${SERVICE_COLORS[i % SERVICE_COLORS.length]}`}>
+                          <Icon size={18} strokeWidth={1.75} />
+                        </span>
+                        <span className="min-w-0">
+                          <span className="text-sm font-semibold text-navy-900">{s.title}</span>
+                          <span className="mt-0.5 block text-xs leading-snug text-navy-500">{s.desc}</span>
+                        </span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Products mega-menu */}
           <div
             className="relative"
             onMouseEnter={() => setProductsOpen(true)}
@@ -108,7 +148,7 @@ export default function Navbar() {
           </Link>
           <a
             href={`${lp('/')}#contact`}
-            className="rounded-full bg-indigo-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition hover:-translate-y-0.5 hover:bg-indigo-600"
+            className="rounded-lg bg-indigo-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-600"
           >
             {t.nav.cta}
           </a>
@@ -126,9 +166,30 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="border-t border-slate-200 bg-white px-6 py-6 lg:hidden">
+        <div className="max-h-[calc(100vh-80px)] overflow-y-auto border-t border-slate-200 bg-white px-6 py-6 lg:hidden">
           <nav className="flex flex-col gap-5">
             <LanguageSwitcher className="w-fit" />
+            <div>
+              <p className="mb-3 text-xs font-bold uppercase tracking-widest text-navy-400">{t.nav.services}</p>
+              <div className="space-y-3">
+                {t.services.items.map((s, i) => {
+                  const Icon = SERVICE_ICONS[i % SERVICE_ICONS.length];
+                  return (
+                    <Link
+                      key={s.slug}
+                      to={`${lp('/services')}#${s.slug}`}
+                      onClick={() => setOpen(false)}
+                      className="flex items-center gap-3"
+                    >
+                      <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${SERVICE_COLORS[i % SERVICE_COLORS.length]}`}>
+                        <Icon size={16} strokeWidth={1.75} />
+                      </span>
+                      <span className="text-sm font-medium text-navy-700">{s.title}</span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
             <div>
               <p className="mb-3 text-xs font-bold uppercase tracking-widest text-navy-400">{t.nav.products}</p>
               <div className="space-y-3">
@@ -159,7 +220,7 @@ export default function Navbar() {
             <a
               href={`${lp('/')}#contact`}
               onClick={() => setOpen(false)}
-              className="mt-2 rounded-full bg-indigo-500 px-5 py-3 text-center text-sm font-semibold text-white"
+              className="mt-2 rounded-lg bg-indigo-500 px-5 py-3 text-center text-sm font-semibold text-white"
             >
               {t.nav.cta}
             </a>

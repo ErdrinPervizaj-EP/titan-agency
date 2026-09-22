@@ -127,7 +127,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={status === 'sending'}
-              className="w-full rounded-full bg-indigo-500 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition hover:-translate-y-0.5 hover:bg-indigo-600 disabled:opacity-60"
+              className="w-full rounded-lg bg-indigo-500 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25 transition hover:-translate-y-0.5 hover:bg-indigo-600 disabled:opacity-60"
             >
               {status === 'sending' ? p.signingIn : p.signIn}
             </button>

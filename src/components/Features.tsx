@@ -1,19 +1,11 @@
-import { useT } from '../i18n/useLang';
+import { Link } from 'react-router-dom';
+import { useT, useLocalizedPath } from '../i18n/useLang';
+import { SERVICE_ICONS, SERVICE_COLORS } from '../lib/icons';
 import Reveal from './Reveal';
-
-const ICONS = [
-  <path d="M4 4h16v12H8l-4 4V4Z" strokeWidth="1.6" strokeLinejoin="round" />,
-  <path d="M12 3v4M5 10h14M7 10v4a5 5 0 0 0 10 0v-4M9 21h6" strokeWidth="1.6" strokeLinecap="round" />,
-  <path d="M12 2 4 6v6c0 5 3.6 8.7 8 10 4.4-1.3 8-5 8-10V6l-8-4Z" strokeWidth="1.6" strokeLinejoin="round" />,
-  <path d="M7 18a4 4 0 0 1-1-7.9A5 5 0 0 1 15.9 8H17a4 4 0 0 1 1 7.9M9 15l3-3 3 3M12 12v9" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />,
-  <path d="M4 6h16M4 12h10M4 18h7" strokeWidth="1.6" strokeLinecap="round" />,
-  <path d="M4 20V10m6 10V4m6 16v-7" strokeWidth="1.6" strokeLinecap="round" />,
-];
-
-const COLORS = ['bg-indigo-500/10 text-indigo-500', 'bg-teal-500/10 text-teal-600', 'bg-gold-500/15 text-gold-600'];
 
 export default function Features() {
   const t = useT();
+  const lp = useLocalizedPath();
 
   return (
     <section id="services" className="py-28">
@@ -27,19 +19,35 @@ export default function Features() {
         </div>
 
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {t.services.items.map((f, i) => (
-            <Reveal key={f.title} delay={(i % 3) * 80}>
-              <div className="group h-full rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-                <div className={`flex h-11 w-11 items-center justify-center rounded-xl ${COLORS[i % COLORS.length]}`}>
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    {ICONS[i % ICONS.length]}
-                  </svg>
-                </div>
-                <h3 className="font-display mt-5 text-lg font-semibold text-navy-900">{f.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-navy-500">{f.desc}</p>
-              </div>
-            </Reveal>
-          ))}
+          {t.services.items.map((f, i) => {
+            const Icon = SERVICE_ICONS[i % SERVICE_ICONS.length];
+            return (
+              <Reveal key={f.title} delay={(i % 3) * 80}>
+                <Link
+                  to={`${lp('/services')}#${f.slug}`}
+                  className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:border-indigo-200 hover:shadow-lg"
+                >
+                  <div className={`flex h-11 w-11 items-center justify-center rounded-xl ${SERVICE_COLORS[i % SERVICE_COLORS.length]}`}>
+                    <Icon size={22} strokeWidth={1.75} />
+                  </div>
+                  <h3 className="font-display mt-5 text-lg font-semibold text-navy-900">{f.title}</h3>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-navy-500">{f.desc}</p>
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-500 opacity-0 transition group-hover:opacity-100">
+                    {t.servicesPage.includedLabel} →
+                  </span>
+                </Link>
+              </Reveal>
+            );
+          })}
+        </div>
+
+        <div className="mt-12 text-center">
+          <Link
+            to={lp('/services')}
+            className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-navy-900 shadow-sm transition hover:bg-slate-50"
+          >
+            {t.servicesPage.viewAll} →
+          </Link>
         </div>
       </div>
     </section>

@@ -1,3 +1,4 @@
+import { Check } from 'lucide-react';
 import { useT } from '../i18n/useLang';
 
 export default function Pricing() {
@@ -40,9 +41,7 @@ export default function Pricing() {
               <ul className="mt-7 flex-1 space-y-3.5">
                 {p.features.map((f) => (
                   <li key={f} className="flex items-start gap-3 text-sm text-navy-600">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="mt-0.5 shrink-0 text-teal-600">
-                      <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
+                    <Check size={18} strokeWidth={2} className="mt-0.5 shrink-0 text-teal-600" />
                     {f}
                   </li>
                 ))}
@@ -50,7 +49,7 @@ export default function Pricing() {
 
               <a
                 href="#contact"
-                className={`mt-8 rounded-full py-3 text-center text-sm font-semibold transition ${
+                className={`mt-8 rounded-lg py-3 text-center text-sm font-semibold transition ${
                   p.featured
                     ? 'bg-indigo-500 text-white hover:bg-indigo-600'
                     : 'border border-slate-200 text-navy-900 hover:bg-slate-50'

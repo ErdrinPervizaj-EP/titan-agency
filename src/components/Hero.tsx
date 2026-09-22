@@ -41,13 +41,13 @@ export default function Hero() {
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:mt-9 sm:flex-row sm:gap-4">
             <a
               href="#contact"
-              className="w-full rounded-full bg-indigo-500 px-7 py-3.5 text-center text-sm font-semibold text-white shadow-xl shadow-indigo-500/25 transition hover:-translate-y-0.5 hover:bg-indigo-600 sm:w-auto"
+              className="w-full rounded-lg bg-indigo-500 px-7 py-3.5 text-center text-sm font-semibold text-white shadow-xl shadow-indigo-500/25 transition hover:-translate-y-0.5 hover:bg-indigo-600 sm:w-auto"
             >
               {t.hero.ctaPrimary}
             </a>
             <a
               href="#services"
-              className="w-full rounded-full border border-slate-200 bg-white px-7 py-3.5 text-center text-sm font-semibold text-navy-900 shadow-sm transition hover:bg-slate-50 sm:w-auto"
+              className="w-full rounded-lg border border-slate-200 bg-white px-7 py-3.5 text-center text-sm font-semibold text-navy-900 shadow-sm transition hover:bg-slate-50 sm:w-auto"
             >
               {t.hero.ctaSecondary}
             </a>

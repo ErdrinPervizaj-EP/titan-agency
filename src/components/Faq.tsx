@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Plus } from 'lucide-react';
 import { useT } from '../i18n/useLang';
 
 export default function Faq() {
@@ -23,13 +24,11 @@ export default function Faq() {
                   className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
                 >
                   <span className="font-medium text-navy-900">{item.q}</span>
-                  <span
-                    className={`shrink-0 text-xl leading-none text-indigo-500 transition-transform ${
-                      isOpen ? 'rotate-45' : ''
-                    }`}
-                  >
-                    +
-                  </span>
+                  <Plus
+                    size={20}
+                    strokeWidth={2}
+                    className={`shrink-0 text-indigo-500 transition-transform ${isOpen ? 'rotate-45' : ''}`}
+                  />
                 </button>
                 <div
                   className="grid transition-all duration-300"

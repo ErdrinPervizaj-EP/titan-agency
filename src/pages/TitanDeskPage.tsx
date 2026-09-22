@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Check } from 'lucide-react';
 import ProductIcon from '../components/ProductIcon';
 import ProductTour from '../components/ProductTour';
 import Testimonials from '../components/Testimonials';
@@ -49,13 +50,13 @@ export default function TitanDeskPage() {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Link
               to={lp('/login')}
-              className="rounded-full bg-indigo-500 px-7 py-3.5 text-sm font-semibold text-white shadow-xl shadow-indigo-500/25 transition hover:-translate-y-0.5 hover:bg-indigo-600"
+              className="rounded-lg bg-indigo-500 px-7 py-3.5 text-sm font-semibold text-white shadow-xl shadow-indigo-500/25 transition hover:-translate-y-0.5 hover:bg-indigo-600"
             >
               {p.ctaPrimary}
             </Link>
             <a
               href={`${lp('/')}#contact`}
-              className="rounded-full border border-slate-200 bg-white px-7 py-3.5 text-sm font-semibold text-navy-900 shadow-sm transition hover:bg-slate-50"
+              className="rounded-lg border border-slate-200 bg-white px-7 py-3.5 text-sm font-semibold text-navy-900 shadow-sm transition hover:bg-slate-50"
             >
               {p.ctaSecondary}
             </a>
@@ -144,16 +145,14 @@ export default function TitanDeskPage() {
                 <ul className="mt-7 flex-1 space-y-3.5">
                   {plan.features.map((f) => (
                     <li key={f} className="flex items-start gap-3 text-sm text-navy-600">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="mt-0.5 shrink-0 text-teal-600">
-                        <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
+                      <Check size={18} strokeWidth={2} className="mt-0.5 shrink-0 text-teal-600" />
                       {f}
                     </li>
                   ))}
                 </ul>
                 <Link
                   to={lp('/login')}
-                  className={`mt-8 rounded-full py-3 text-center text-sm font-semibold transition ${
+                  className={`mt-8 rounded-lg py-3 text-center text-sm font-semibold transition ${
                     plan.featured ? 'bg-indigo-500 text-white hover:bg-indigo-600' : 'border border-slate-200 text-navy-900 hover:bg-slate-50'
                   }`}
                 >
@@ -172,7 +171,7 @@ export default function TitanDeskPage() {
           <p className="mt-3 text-navy-500">{p.finalCtaSub}</p>
           <Link
             to={lp('/login')}
-            className="mt-7 inline-flex items-center gap-2 rounded-full bg-indigo-500 px-7 py-3.5 text-sm font-semibold text-white shadow-xl shadow-indigo-500/25 transition hover:-translate-y-0.5 hover:bg-indigo-600"
+            className="mt-7 inline-flex items-center gap-2 rounded-lg bg-indigo-500 px-7 py-3.5 text-sm font-semibold text-white shadow-xl shadow-indigo-500/25 transition hover:-translate-y-0.5 hover:bg-indigo-600"
           >
             {p.ctaPrimary}
           </Link>
