@@ -1,0 +1,82 @@
+<svg viewBox="0 0 1200 280" width="1200" height="280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Titan Network Agency" overflow="hidden">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B1220"/>
+      <stop offset="55%" stop-color="#16213D"/>
+      <stop offset="100%" stop-color="#1D2E5C"/>
+    </linearGradient>
+    <linearGradient id="bar1" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#F5A623"/>
+      <stop offset="100%" stop-color="#F8C46A"/>
+    </linearGradient>
+    <linearGradient id="bar2" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#1FA971"/>
+      <stop offset="100%" stop-color="#5FD6A2"/>
+    </linearGradient>
+    <linearGradient id="bar3" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#8AB6FA"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F5A623" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#F5A623" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M 34 0 L 0 0 0 34" fill="none" stroke="#FFFFFF" stroke-opacity="0.035" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="280" fill="url(#bg)"/>
+  <rect width="1200" height="280" fill="url(#grid)"/>
+  <circle cx="990" cy="70" r="260" fill="url(#glow)"/>
+  <circle cx="1120" cy="260" r="180" fill="url(#glow2)"/>
+
+  <!-- hexagon-T mark (same geometry as public/favicon.svg) -->
+  <g transform="translate(96,140) scale(2.7) translate(-24,-24)">
+    <path d="M24 3.5 L43 15.2 V32.8 L24 44.5 L5 32.8 V15.2 Z" stroke="#7C9BEB" stroke-width="1.4" stroke-linejoin="round" fill="none" stroke-opacity="0.95"/>
+    <rect x="15" y="30" width="4" height="8" rx="2" fill="url(#bar1)"/>
+    <rect x="21.5" y="24" width="4" height="14" rx="2" fill="url(#bar2)"/>
+    <path d="M16 15.5 H32 L28.5 20 H25.5 V34.5 H22.5 V20 H19.5 Z" fill="#F4F6FB"/>
+    <rect x="28.5" y="27" width="4" height="11" rx="2" fill="url(#bar3)"/>
+  </g>
+
+  <!-- wordmark -->
+  <text x="200" y="130" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="56" font-weight="700" fill="#F4F6FB">
+    Titan Network <tspan fill="#F5A623" font-weight="600">Agency</tspan>
+  </text>
+  <text x="202" y="168" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="21" font-weight="400" fill="#A9B4D6">
+    Managed IT, networking, security, cloud and software — and the home of TitanDesk
+  </text>
+
+  <!-- service chips -->
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="600">
+    <g transform="translate(202,204)">
+      <rect width="110" height="30" rx="15" fill="#1B274A" stroke="#33417A" stroke-width="1"/>
+      <text x="55" y="20" text-anchor="middle" fill="#CBD4F5">Managed IT</text>
+    </g>
+    <g transform="translate(322,204)">
+      <rect width="108" height="30" rx="15" fill="#1B274A" stroke="#33417A" stroke-width="1"/>
+      <text x="54" y="20" text-anchor="middle" fill="#CBD4F5">Networking</text>
+    </g>
+    <g transform="translate(440,204)">
+      <rect width="128" height="30" rx="15" fill="#1B274A" stroke="#33417A" stroke-width="1"/>
+      <text x="64" y="20" text-anchor="middle" fill="#CBD4F5">Cybersecurity</text>
+    </g>
+    <g transform="translate(578,204)">
+      <rect width="76" height="30" rx="15" fill="#1B274A" stroke="#33417A" stroke-width="1"/>
+      <text x="38" y="20" text-anchor="middle" fill="#CBD4F5">Cloud</text>
+    </g>
+    <g transform="translate(664,204)">
+      <rect width="98" height="30" rx="15" fill="#1B274A" stroke="#33417A" stroke-width="1"/>
+      <text x="49" y="20" text-anchor="middle" fill="#CBD4F5">Software</text>
+    </g>
+    <g transform="translate(772,204)">
+      <rect width="104" height="30" rx="15" fill="#2A2410" stroke="#7A5B1E" stroke-width="1"/>
+      <text x="52" y="20" text-anchor="middle" fill="#F8C46A">TitanDesk</text>
+    </g>
+  </g>
+</svg>
