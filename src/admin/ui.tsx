@@ -3,7 +3,7 @@ import type { LucideIcon } from 'lucide-react';
 import { ChevronDown, PanelsTopLeft, SearchX } from 'lucide-react';
 import type { ReactNode } from 'react';
 
-export function SectionIcon({ icon: Icon, className }: { icon: LucideIcon; className?: string }) {
+function SectionIcon({ icon: Icon, className }: { icon: LucideIcon; className?: string }) {
   return <span aria-hidden="true" className={clsx('section-icon', className)}><Icon size={17} strokeWidth={1.8} /></span>;
 }
 

@@ -18,7 +18,7 @@ export function isRealSensitiveAction(path: string): boolean {
   return REAL_SENSITIVE_ACTIONS.has(action) || REAL_SENSITIVE_PATHS.has(path);
 }
 
-export class SuperAdminApiError extends Error {
+class SuperAdminApiError extends Error {
   readonly status: number;
   constructor(message: string, status = 400) { super(message); this.status = status; }
 }

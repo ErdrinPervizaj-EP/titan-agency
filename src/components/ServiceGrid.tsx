@@ -4,9 +4,9 @@ import { ArrowUpRight, Check } from 'lucide-react';
 import { useT, useLocalizedPath } from '../i18n/useLang';
 import { SERVICE_ACCENTS, SERVICE_ICONS } from '../lib/icons';
 import TicketDeskMimic from './mimics/TicketDeskMimic';
-import patchPanel from '../assets/photos/network-patch-panel.jpg';
-import serverRoom from '../assets/photos/server-room-hallway.jpg';
-import codeMacbook from '../assets/photos/code-macbook.jpg';
+import patchPanel from '../assets/photos/network-patch-panel.webp';
+import serverRoom from '../assets/photos/server-room-hallway.webp';
+import codeMacbook from '../assets/photos/code-macbook.webp';
 
 /** Picture per service, by position in translations.services.items. */
 const MEDIA: Record<number, { src: string; kind: 'photo' } | { kind: 'mimic' }> = {

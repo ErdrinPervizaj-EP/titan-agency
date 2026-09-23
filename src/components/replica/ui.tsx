@@ -30,7 +30,7 @@ export function TitanLogo({ size = 30 }: { size?: number }) {
   );
 }
 
-export function SectionIcon({ icon: Icon, className = '' }: { icon: LucideIcon; className?: string }) {
+function SectionIcon({ icon: Icon, className = '' }: { icon: LucideIcon; className?: string }) {
   return <span aria-hidden className={`section-icon ${className}`}><Icon size={17} strokeWidth={1.8} /></span>;
 }
 

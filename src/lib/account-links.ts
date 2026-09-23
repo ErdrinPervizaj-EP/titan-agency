@@ -9,7 +9,7 @@ import { TITANDESK_WEB_URL } from './titandesk-client';
  * products (HRM, …) exist and sign-in moves to a shared accounts app (e.g.
  * accounts.titannetwork.com), set VITE_ACCOUNT_URL and every link follows.
  */
-export const ACCOUNT_URL = (import.meta.env.VITE_ACCOUNT_URL ?? TITANDESK_WEB_URL).replace(/\/$/, '');
+const ACCOUNT_URL = (import.meta.env.VITE_ACCOUNT_URL ?? TITANDESK_WEB_URL).replace(/\/$/, '');
 
 export const ACCOUNT_PAGES = {
   login: '/login',

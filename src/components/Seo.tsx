@@ -1,8 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import { useLang } from '../i18n/useLang';
 
-export const SITE_URL = 'https://titannetwork.io';
-export const SITE_NAME = 'Titan Network';
+const SITE_URL = 'https://titannetwork.io';
+const SITE_NAME = 'Titan Network';
 
 const ORG_JSON_LD = {
   '@context': 'https://schema.org',
