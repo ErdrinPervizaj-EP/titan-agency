@@ -1,17 +1,25 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Check } from 'lucide-react';
-import ProductIcon from '../components/ProductIcon';
-import ProductTour from '../components/ProductTour';
-import Testimonials from '../components/Testimonials';
+import { BarChart3, BadgeCheck, Building2, CalendarDays, Check, CreditCard, FolderKanban, LayoutDashboard, Minus, MonitorSmartphone, Network, Receipt, Router, Server, ShieldCheck, Ticket, Wallet, Wifi } from 'lucide-react';
+import FeaturesGrid from '../components/FeaturesGrid';
+import FloatingIcons from '../components/FloatingIcons';
 import Seo from '../components/Seo';
-import NetworkMock from '../components/mocks/NetworkMock';
-import ReportsMock from '../components/mocks/ReportsMock';
+import Section, { primaryButton, secondaryButton } from '../components/Section';
+import TitanDeskReplica, { type ReplicaPage } from '../components/replica/TitanDeskReplica';
+import ProductPanel from '../components/replica/ProductPanel';
+import ProductPlans from '../components/ProductPlans';
+import { NetworkView, ReportsView } from '../components/replica/views';
+import { useParallax } from '../hooks/useParallax';
 import { useT, useLocalizedPath } from '../i18n/useLang';
+import { accountUrl } from '../lib/account-links';
 
 export default function TitanDeskPage() {
   const t = useT();
   const lp = useLocalizedPath();
   const p = t.titandeskPage;
+  const heroRef = useParallax<HTMLElement>();
+  const [tourPage, setTourPage] = useState<ReplicaPage>('home');
+  const tourStep = p.tour.find((step) => step.page === tourPage) ?? p.tour[0];
 
   return (
     <>
@@ -23,160 +31,112 @@ export default function TitanDeskPage() {
         descriptionDe="TitanDesk vereint Tickets, Netzwerküberwachung, Kunden-CRM und Reporting in einem Workspace. Entwickelt von Titan Network für MSPs und interne IT-Teams."
       />
 
-      {/* Hero */}
-      <section className="relative overflow-hidden pb-20 pt-20 lg:pt-28">
-        <div className="bg-grid pointer-events-none absolute inset-0 opacity-70" />
-        <div
-          className="pointer-events-none absolute -top-40 right-0 h-[560px] w-[560px] rounded-full opacity-30 blur-3xl"
-          style={{ background: 'radial-gradient(circle, #4f63d2 0%, transparent 70%)' }}
-        />
-        <div className="relative mx-auto max-w-4xl px-6 text-center">
-          <div className="flex items-center justify-center gap-2 text-sm font-medium text-navy-400">
-            <span>{p.partOf}</span>
-            <Link to={lp('/')} className="font-semibold text-navy-700 hover:text-navy-900">
-              Titan Network
-            </Link>
+      {/* Hero: headline, then the product itself */}
+      <section ref={heroRef} className="overflow-hidden">
+        <div className="relative isolate mx-auto max-w-6xl px-6 pb-4 pt-16 sm:pt-24">
+          <FloatingIcons />
+          <p className="text-sm font-medium text-navy-400">
+            {p.partOf}{' '}
+            <Link to={lp('/')} className="font-semibold text-indigo-500 hover:text-indigo-600">Titan Network</Link>
+          </p>
+          <h1 className="font-display text-balance mt-5 max-w-3xl text-4xl font-bold leading-[1.05] text-navy-900 sm:text-6xl">{p.title}</h1>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-500">{p.sub}</p>
+          <div className="mt-9 flex flex-wrap items-center gap-4">
+            <a href={accountUrl('signup')} className={primaryButton}>{p.ctaPrimary}</a>
+            <a href="#pricing" className={secondaryButton}>{p.pricingTag}</a>
           </div>
-
-          <div className="mt-6 flex justify-center">
-            <ProductIcon product="titandesk" size={56} />
-          </div>
-
-          <h1 className="font-display text-balance mt-6 text-4xl font-bold leading-[1.08] text-navy-900 sm:text-5xl">
-            {p.title}
-          </h1>
-          <p className="mx-auto mt-6 max-w-xl text-lg text-navy-500">{p.sub}</p>
-
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              to={lp('/login')}
-              className="rounded-lg bg-indigo-500 px-7 py-3.5 text-sm font-semibold text-white shadow-xl shadow-indigo-500/25 transition hover:-translate-y-0.5 hover:bg-indigo-600"
-            >
-              {p.ctaPrimary}
-            </Link>
-            <a
-              href={`${lp('/')}#contact`}
-              className="rounded-lg border border-slate-200 bg-white px-7 py-3.5 text-sm font-semibold text-navy-900 shadow-sm transition hover:bg-slate-50"
-            >
-              {p.ctaSecondary}
-            </a>
-          </div>
-
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-2.5">
-            {p.audiences.map((a) => (
-              <span key={a} className="rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-medium text-navy-500">
-                {a}
-              </span>
-            ))}
-          </div>
+          <p className="mt-8 text-sm text-navy-400">{p.audiences.join(' · ')}</p>
         </div>
-      </section>
-
-      {/* Full product tour */}
-      <section className="bg-slate-50 py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="mx-auto max-w-2xl text-center">
-            <span className="text-xs font-bold uppercase tracking-widest text-teal-600">{p.tourTag}</span>
-            <h2 className="font-display mt-4 text-3xl font-bold text-navy-900 sm:text-4xl">{p.tourTitle}</h2>
-          </div>
-          <div className="mt-12">
-            <ProductTour />
-          </div>
-        </div>
-      </section>
-
-      {/* Alternating feature highlights */}
-      <section className="py-24">
-        <div className="mx-auto max-w-7xl space-y-24 px-6">
-          <div className="grid items-center gap-10 lg:grid-cols-2">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-indigo-500">{p.highlight1Tag}</span>
-              <h3 className="font-display mt-4 text-2xl font-bold text-navy-900 sm:text-3xl">{p.highlight1Title}</h3>
-              <p className="mt-4 text-navy-500">{p.highlight1Desc}</p>
-            </div>
-            <div className="overflow-hidden rounded-2xl border border-slate-200 shadow-xl shadow-navy-900/10">
-              <NetworkMock />
-            </div>
-          </div>
-
-          <div className="grid items-center gap-10 lg:grid-cols-2">
-            <div className="order-2 overflow-hidden rounded-2xl border border-slate-200 shadow-xl shadow-navy-900/10 lg:order-1">
-              <ReportsMock />
-            </div>
-            <div className="order-1 lg:order-2">
-              <span className="text-xs font-bold uppercase tracking-widest text-gold-600">{p.highlight2Tag}</span>
-              <h3 className="font-display mt-4 text-2xl font-bold text-navy-900 sm:text-3xl">{p.highlight2Title}</h3>
-              <p className="mt-4 text-navy-500">{p.highlight2Desc}</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <Testimonials />
-
-      {/* TitanDesk pricing */}
-      <section id="titandesk-pricing" className="bg-slate-50 py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="mx-auto max-w-2xl text-center">
-            <span className="text-xs font-bold uppercase tracking-widest text-gold-600">{p.pricingTag}</span>
-            <h2 className="font-display mt-4 text-3xl font-bold text-navy-900 sm:text-4xl">{p.pricingTitle}</h2>
-            <p className="mt-4 text-navy-500">{p.pricingSub}</p>
-          </div>
-
-          <div className="mt-14 grid gap-6 lg:grid-cols-3 lg:items-stretch">
-            {p.plans.map((plan) => (
-              <div
-                key={plan.name}
-                className={`relative flex flex-col rounded-2xl border p-8 ${
-                  plan.featured ? 'border-indigo-200 bg-white shadow-2xl shadow-indigo-500/10 lg:-translate-y-3' : 'border-slate-200 bg-white shadow-sm'
-                }`}
-              >
-                {plan.featured && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-indigo-500 px-4 py-1 text-xs font-bold text-white">
-                    {t.pricing.mostPopular}
-                  </span>
-                )}
-                <h3 className="font-display text-xl font-bold text-navy-900">{plan.name}</h3>
-                <p className="mt-1.5 text-sm text-navy-400">{plan.desc}</p>
-                <div className="mt-6 flex items-baseline gap-1">
-                  <span className="font-display text-4xl font-bold text-navy-900">{plan.price}</span>
-                  <span className="text-sm text-navy-400">{plan.period}</span>
-                </div>
-                <ul className="mt-7 flex-1 space-y-3.5">
-                  {plan.features.map((f) => (
-                    <li key={f} className="flex items-start gap-3 text-sm text-navy-600">
-                      <Check size={18} strokeWidth={2} className="mt-0.5 shrink-0 text-teal-600" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  to={lp('/login')}
-                  className={`mt-8 rounded-lg py-3 text-center text-sm font-semibold transition ${
-                    plan.featured ? 'bg-indigo-500 text-white hover:bg-indigo-600' : 'border border-slate-200 text-navy-900 hover:bg-slate-50'
-                  }`}
-                >
-                  {p.pricingCta}
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="py-20 text-center">
-        <div className="mx-auto max-w-2xl px-6">
-          <h2 className="font-display text-2xl font-bold text-navy-900 sm:text-3xl">{p.finalCtaTitle}</h2>
-          <p className="mt-3 text-navy-500">{p.finalCtaSub}</p>
-          <Link
-            to={lp('/login')}
-            className="mt-7 inline-flex items-center gap-2 rounded-lg bg-indigo-500 px-7 py-3.5 text-sm font-semibold text-white shadow-xl shadow-indigo-500/25 transition hover:-translate-y-0.5 hover:bg-indigo-600"
+        <figure className="mx-auto mt-14 max-w-6xl px-6 [perspective:1600px] sm:mt-16">
+          <div
+            className="origin-top overflow-hidden rounded-xl border border-slate-200 bg-white shadow-[0_40px_80px_-40px_rgba(16,26,51,0.35)] transition-transform duration-500 ease-out will-change-transform"
+            style={{ transform: 'rotateX(calc((1 - var(--sp, 1)) * 12deg + var(--py, 0) * -2deg)) rotateY(calc(var(--px, 0) * 3deg)) scale(calc(0.96 + var(--sp, 1) * 0.04))' }}
           >
-            {p.ctaPrimary}
-          </Link>
-        </div>
+            <TitanDeskReplica />
+          </div>
+          <figcaption className="mt-5 text-sm text-navy-400">{p.tourHint}</figcaption>
+        </figure>
       </section>
+
+      {/* Product tour: the tabs drive the same working replica */}
+      <Section label={p.tourTag} title={p.tourTitle} tinted fullWidth decor={{ icons: [LayoutDashboard, Ticket, Building2, FolderKanban, MonitorSmartphone, BarChart3], accent: '#0b8bd6' }}>
+        <div className="grid gap-10 lg:grid-cols-[18rem_minmax(0,1fr)]">
+          <ol className="space-y-1" aria-label={p.tourTag}>
+            {p.tour.map((step, i) => {
+              const active = step.page === tourPage;
+              return (
+                <li key={step.page}>
+                  <button
+                    type="button"
+                    onClick={() => setTourPage(step.page as ReplicaPage)}
+                    aria-pressed={active}
+                    className={`grid w-full grid-cols-[2rem_minmax(0,1fr)] gap-x-3 rounded-lg border-l-2 px-4 py-3 text-left transition-colors ${active ? 'border-indigo-500 bg-white shadow-sm' : 'border-transparent hover:bg-white/70'}`}
+                  >
+                    <span className={`font-mono text-sm ${active ? 'text-indigo-500' : 'text-navy-400'}`}>{String(i + 1).padStart(2, '0')}</span>
+                    <span>
+                      <span className="block font-semibold text-navy-900">{step.label}</span>
+                      {active && <span className="mt-1 block text-sm leading-relaxed text-navy-500">{step.desc}</span>}
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
+          </ol>
+          <div>
+            <h3 className="font-display text-xl font-semibold text-navy-900">{tourStep.title}</h3>
+            <div className="mt-5 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-[0_30px_60px_-30px_rgba(16,26,51,0.3)]">
+              <TitanDeskReplica page={tourPage} onPageChange={setTourPage} />
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      <FeaturesGrid />
+
+      {/* Highlights: real product pages, not illustrations of them */}
+      <Section label={p.highlight1Tag} title={p.highlight1Title} intro={p.highlight1Desc} fullWidth decor={{ icons: [Router, Network, Server, Wifi, ShieldCheck, MonitorSmartphone], accent: '#2f9e8f' }}>
+        <ProductPanel label={p.highlight1Title}><NetworkView /></ProductPanel>
+      </Section>
+      <Section label={p.highlight2Tag} title={p.highlight2Title} intro={p.highlight2Desc} tinted fullWidth decor={{ icons: [BarChart3, CalendarDays, ShieldCheck, Ticket, BadgeCheck, LayoutDashboard], accent: '#d4541f' }}>
+        <ProductPanel label={p.highlight2Title}><ReportsView /></ProductPanel>
+      </Section>
+
+      {/* Pricing and what each plan can handle */}
+      <Section id="pricing" label={p.pricingTag} title={p.pricingTitle} intro={p.pricingSub} fullWidth decor={{ icons: [CreditCard, BadgeCheck, Receipt, Wallet, ShieldCheck, Building2], accent: '#c98a06' }}>
+        <ProductPlans />
+
+        <h3 className="font-display mt-16 text-2xl font-bold text-navy-900">{p.compareTitle}</h3>
+        <div className="mt-6 overflow-x-auto rounded-2xl border border-slate-200 bg-white">
+          <table className="w-full min-w-[640px] text-left text-sm">
+            <thead>
+              <tr className="border-b border-slate-200 bg-slate-50">
+                <th className="px-6 py-4 font-semibold text-navy-500">{p.compareFeature}</th>
+                {p.plans.map((plan) => <th key={plan.name} className="w-40 px-6 py-4 text-center font-semibold text-navy-900">{plan.name}</th>)}
+              </tr>
+            </thead>
+            <tbody>
+              {p.compareRows.map((row) => (
+                <tr key={row.label} className="border-b border-slate-100 last:border-0">
+                  <td className="px-6 py-4 text-navy-700">{row.label}</td>
+                  {row.values.map((value, i) => (
+                    <td key={i} className="px-6 py-4 text-center">
+                      {value === 'yes' ? <Check size={18} aria-label="Included" className="mx-auto text-teal-500" />
+                        : value === 'no' ? <Minus size={18} aria-label="Not included" className="mx-auto text-slate-300" />
+                        : <span className="font-medium text-navy-800">{value}</span>}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Section>
+
+      <Section label="TitanDesk" title={p.finalCtaTitle} intro={p.finalCtaSub} tone="brand">
+        <a href={accountUrl('signup')} className="inline-flex items-center justify-center rounded-lg bg-white px-6 py-3 text-sm font-semibold text-indigo-600 transition-colors hover:bg-indigo-50">
+          {p.ctaPrimary}
+        </a>
+      </Section>
     </>
   );
 }

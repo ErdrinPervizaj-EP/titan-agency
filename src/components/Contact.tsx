@@ -1,10 +1,19 @@
 import { useState, type FormEvent } from 'react';
-import { useT } from '../i18n/useLang';
+import { submitSupportRequest, TitanDeskApiError } from '../lib/titandesk-client';
+import { useLang, useT } from '../i18n/useLang';
+import { loc, useSiteContent } from '../lib/site-content';
+import Section, { primaryButton } from './Section';
+import { AtSign, Mail, MapPin, MessageSquare, Phone, Send } from 'lucide-react';
 
-type Status = 'idle' | 'sending' | 'sent' | 'error';
+type Status = 'idle' | 'sending' | 'sent' | 'error' | 'unavailable';
+
+const fieldClass =
+  'mt-2 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-navy-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/15';
 
 export default function Contact() {
   const t = useT();
+  const lang = useLang();
+  const { company } = useSiteContent();
   const [status, setStatus] = useState<Status>('idle');
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -12,78 +21,78 @@ export default function Contact() {
     setStatus('sending');
 
     const form = e.currentTarget;
-    const data = Object.fromEntries(new FormData(form).entries());
+    const data = new FormData(form);
+    const field = (name: string) => String(data.get(name) ?? '').trim();
 
     try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+      // Becomes a ticket in Titan Network's own TitanDesk.
+      await submitSupportRequest({
+        kind: 'question',
+        name: field('name'),
+        email: field('email'),
+        company: field('company'),
+        message: field('message'),
+        page: window.location.href,
+        website: field('website'),
       });
-      if (!res.ok) throw new Error('Request failed');
       setStatus('sent');
       form.reset();
-    } catch {
-      setStatus('error');
+    } catch (error) {
+      setStatus(error instanceof TitanDeskApiError && error.code === 'support_not_configured' ? 'unavailable' : 'error');
     }
   }
 
   return (
-    <section id="contact" className="relative overflow-hidden py-28">
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-full opacity-20 blur-3xl"
-        style={{ background: 'radial-gradient(600px circle at 50% 0%, #4f63d2, transparent 70%)' }}
-      />
-      <div className="relative mx-auto max-w-2xl px-6 text-center">
-        <span className="text-xs font-bold uppercase tracking-widest text-teal-600">{t.contact.tag}</span>
-        <h2 className="font-display text-balance mt-4 text-3xl font-bold text-navy-900 sm:text-4xl">
-          {t.contact.title}
-        </h2>
-        <p className="mt-4 text-navy-500">{t.contact.sub}</p>
-
-        <form onSubmit={handleSubmit} className="mt-10 space-y-4 text-left">
-          <div className="grid gap-4 sm:grid-cols-2">
-            <input
-              name="name"
-              type="text"
-              required
-              placeholder={t.contact.name}
-              className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-navy-900 placeholder:text-navy-400 focus:border-indigo-500 focus:outline-none"
-            />
-            <input
-              name="email"
-              type="email"
-              required
-              placeholder={t.contact.email}
-              className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-navy-900 placeholder:text-navy-400 focus:border-indigo-500 focus:outline-none"
-            />
+    <Section id="contact" label={t.contact.tag} title={t.contact.title} intro={t.contact.sub} tone="brand" decor={{ icons: [Mail, Phone, MapPin, Send, MessageSquare, AtSign] }}>
+      <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_16rem]">
+        <form onSubmit={handleSubmit} className="relative space-y-5 rounded-2xl bg-white p-6 text-navy-900 shadow-[0_30px_60px_-30px_rgba(16,26,51,0.5)] sm:p-8">
+          <div className="grid gap-5 sm:grid-cols-2">
+            <label className="block text-sm font-medium text-navy-700">
+              {t.contact.name}
+              <input name="name" type="text" autoComplete="name" required className={fieldClass} />
+            </label>
+            <label className="block text-sm font-medium text-navy-700">
+              {t.contact.email}
+              <input name="email" type="email" autoComplete="email" required className={fieldClass} />
+            </label>
           </div>
-          <input
-            name="company"
-            type="text"
-            placeholder={t.contact.company}
-            className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-navy-900 placeholder:text-navy-400 focus:border-indigo-500 focus:outline-none"
-          />
-          <textarea
-            name="message"
-            rows={4}
-            required
-            placeholder={t.contact.message}
-            className="w-full resize-none rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-navy-900 placeholder:text-navy-400 focus:border-indigo-500 focus:outline-none"
-          />
-
-          <button
-            type="submit"
-            disabled={status === 'sending'}
-            className="w-full rounded-lg bg-indigo-500 py-3.5 text-sm font-semibold text-white shadow-xl shadow-indigo-500/25 transition hover:-translate-y-0.5 hover:bg-indigo-600 disabled:opacity-60"
-          >
-            {status === 'sending' ? t.contact.sending : t.contact.submit}
-          </button>
-
-          {status === 'sent' && <p className="text-center text-sm font-medium text-teal-600">{t.contact.success}</p>}
-          {status === 'error' && <p className="text-center text-sm font-medium text-red-500">{t.contact.error}</p>}
+          <label className="block text-sm font-medium text-navy-700">
+            {t.contact.company}
+            <input name="company" type="text" autoComplete="organization" className={fieldClass} />
+          </label>
+          {/* Honeypot: hidden from people, filled in by bots. */}
+          <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden className="absolute -left-[9999px] h-0 w-0 opacity-0" />
+          <label className="block text-sm font-medium text-navy-700">
+            {t.contact.message}
+            <textarea name="message" rows={5} required minLength={10} maxLength={5000} className={`${fieldClass} resize-y`} />
+          </label>
+          <div className="flex flex-wrap items-center gap-4">
+            <button type="submit" disabled={status === 'sending'} className={`${primaryButton} disabled:opacity-60`}>
+              {status === 'sending' ? t.contact.sending : t.contact.submit}
+            </button>
+            {status === 'sent' && <p role="status" className="text-sm font-medium text-teal-600">{t.contact.success}</p>}
+            {status === 'error' && <p role="alert" className="text-sm font-medium text-red-600">{t.contact.error}</p>}
+            {status === 'unavailable' && <p role="alert" className="text-sm font-medium text-red-600">{t.contact.unavailable} <a href={`mailto:${company.email}`} className="underline">{company.email}</a></p>}
+          </div>
         </form>
+
+        <div className="space-y-6 text-sm lg:pt-2">
+          <div>
+            <p className="font-medium text-white/65">{t.contact.emailUs}</p>
+            <a href={`mailto:${company.email}`} className="mt-1 block text-base font-semibold text-white underline decoration-white/40 underline-offset-4 hover:decoration-white">{company.email}</a>
+          </div>
+          <div>
+            <p className="font-medium text-white/65">{t.contact.where}</p>
+            <p className="mt-1 leading-relaxed text-white">{loc(company.locations, lang)}</p>
+          </div>
+          {company.phone && (
+            <div>
+              <p className="font-medium text-white/65">{t.supportWidget.phoneLabel}</p>
+              <a href={`tel:${company.phone.replace(/[^+0-9]/g, '')}`} className="mt-1 block text-base font-semibold text-white">{company.phone}</a>
+            </div>
+          )}
+        </div>
       </div>
-    </section>
+    </Section>
   );
 }

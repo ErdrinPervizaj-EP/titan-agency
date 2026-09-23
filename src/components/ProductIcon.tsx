@@ -1,10 +1,9 @@
-import { MessageSquare, ShieldCheck, Cloud } from 'lucide-react';
+import { MessageSquare, Users } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 const ICONS: Record<string, { bg: string; Icon: LucideIcon }> = {
   titandesk: { bg: 'bg-indigo-500', Icon: MessageSquare },
-  titanshield: { bg: 'bg-gold-500', Icon: ShieldCheck },
-  titancloud: { bg: 'bg-teal-500', Icon: Cloud },
+  hrm: { bg: 'bg-teal-500', Icon: Users },
 };
 
 export default function ProductIcon({ product, size = 32 }: { product: keyof typeof ICONS; size?: number }) {

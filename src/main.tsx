@@ -1,3 +1,6 @@
+// Fonts are served from this site, not Google Fonts, so no visitor data goes to a third party.
+import '@fontsource-variable/inter';
+import '@fontsource-variable/dm-sans';
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'

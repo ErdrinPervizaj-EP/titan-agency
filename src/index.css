@@ -1,38 +1,91 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  --color-navy-950: #070b16;
-  --color-navy-900: #0b1220;
-  --color-navy-800: #101a30;
-  --color-navy-700: #131b33;
-  --color-navy-600: #1b274a;
-  --color-navy-500: #1e2a5a;
-  --color-navy-400: #33417a;
+  /* ---- Brand palette — matches Desk.TitanNetwork's own tokens exactly
+   * where Desk has a direct equivalent (web/tailwind.config.js's primary/
+   * gold/teal ramps and --line/--canvas vars), so the agency site, the
+   * admin console, and the product read as one consistent brand rather
+   * than three different blues. Steps Desk doesn't define (the darker
+   * navy backgrounds, softer muted text) are interpolated from its ramp. */
+  --color-navy-950: #101a33;
+  --color-navy-900: #1e305a; /* = Desk primary-01 */
+  --color-navy-800: #24396b;
+  --color-navy-700: #2c4380;
+  --color-navy-600: #335195; /* = Desk primary-03 */
+  --color-navy-500: #3b5da9; /* = Desk primary-04 */
+  --color-navy-400: #6b7aa8;
 
-  --color-indigo-400: #7c8be8;
-  --color-indigo-500: #4f63d2;
-  --color-indigo-600: #3d4fb8;
+  --color-indigo-400: #748fe1; /* = Desk primary-08 */
+  --color-indigo-500: #4165b7; /* = Desk primary-05, Primary/DEFAULT */
+  --color-indigo-600: #3b5da9; /* = Desk primary-04 */
 
-  --color-gold-400: #f7d488;
-  --color-gold-500: #f5b942;
-  --color-gold-600: #f5a623;
+  --color-gold-400: #ffe6a1; /* = Desk gold.soft */
+  --color-gold-500: #dea50b; /* = Desk gold.DEFAULT */
+  --color-gold-600: #bb8900; /* = Desk warning-05 */
 
-  --color-teal-400: #6fe3d6;
-  --color-teal-500: #2fb3a6;
-  --color-teal-600: #1fa971;
+  --color-teal-400: #559ca4; /* = Desk teal-400 */
+  --color-teal-500: #458187; /* = Desk teal-500 */
+  --color-teal-600: #2e595e; /* = Desk secondary-02 */
 
-  --color-ink-100: #f4f6fb;
-  --color-ink-300: #cbd4f5;
-  --color-ink-400: #a9b4d6;
-  --color-ink-500: #838ebd;
+  --color-ink-100: #dfe2f5; /* = Desk primary-12 */
+  --color-ink-300: #bdc5ef; /* = Desk primary-11 */
+  --color-ink-400: #9aaae8; /* = Desk primary-10 */
+  --color-ink-500: #879ce5; /* = Desk primary-09 */
 
-  --color-slate-25: #fbfcfe;
-  --color-slate-50: #f5f7fb;
-  --color-slate-100: #eef1f8;
-  --color-slate-200: #e1e6f2;
+  --color-slate-25: #ffffff;
+  --color-slate-50: #fafafa; /* = Desk --canvas */
+  --color-slate-100: #f5f5f5; /* = Desk --line-soft */
+  --color-slate-200: #e3e3e3; /* = Desk --line */
+
+  /* ---- Admin control-plane tokens ---------------------------------
+   * Same semantic vocabulary TitanDesk's own app uses (surface/canvas/
+   * ink/line/link/ok/warn/bad), remapped onto this site's navy/indigo
+   * palette instead of TitanDesk's neutral-gray one. Scoped to the
+   * admin section only — the marketing pages never reference these. */
+  --color-surface: #ffffff;
+  --color-canvas: #f7f8fc;
+  --color-ink: #0b1220;
+  --color-ink-soft: #47517a;
+  --color-ink-muted: #7680a8;
+  --color-line: #e1e6f2;
+  --color-line-soft: #eef1f8;
+  --color-link: #4f63d2;
+
+  --color-brand-50: #eef1fb;
+  --color-brand-100: #dde3f6;
+  --color-brand-200: #c2caee;
+  --color-brand-300: #a3aee4;
+  --color-brand-500: #7c8be8;
+  --color-brand-600: #4f63d2;
+  --color-brand-700: #3d4fb8;
+
+  --color-ok: #027a48;
+  --color-ok-bg: #ecfdf3;
+  --color-warn: #b98900;
+  --color-warn-bg: #fff6db;
+  --color-bad: #d92d20;
+  --color-bad-bg: #fef3f2;
+  --color-info: #4f63d2;
+  --color-info-bg: #eef1fb;
+
+  --radius-card: 12px;
+  --radius-control: 10px;
+  --shadow-card: 0 1px 2px rgb(11 18 32 / 0.05);
+  --shadow-pop: 0 16px 48px -12px rgb(11 18 32 / 0.18), 0 4px 12px rgb(11 18 32 / 0.06);
+
+  --text-2xs: 0.8125rem;
+  --text-2xs--line-height: 1.25rem;
+  --text-body-xs: 0.8125rem;
+  --text-body-xs--line-height: 1.25rem;
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line-height: 1.3125rem;
+  --text-body-md: 1rem;
+  --text-body-md--line-height: 1.5rem;
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.6875rem;
 }
 
 html {
@@ -65,32 +118,202 @@ body {
   text-wrap: balance;
 }
 
+/* Slow idle float for the background icons (components/FloatingIcons.tsx). */
+@keyframes float-drift {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+.float-drift {
+  animation: float-drift 7s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .float-drift { animation: none; }
+}
+
+/* Subtle dot texture for the colored bands (Section tone="dark" | "brand"). */
+.band-texture {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+
+/* Product illustrations (components/mimics): a new ticket slides in, and
+   "live" dots pulse softly. */
+@keyframes ticket-arrive {
+  from { opacity: 0; transform: translateY(-8px); background-color: rgba(65, 101, 183, 0.10); }
+  to { opacity: 1; transform: translateY(0); background-color: transparent; }
+}
+.ticket-arrive { animation: ticket-arrive 700ms ease-out; }
+@keyframes live-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(47, 158, 143, 0.5); }
+  50% { box-shadow: 0 0 0 5px rgba(47, 158, 143, 0); }
+}
+.live-dot { animation: live-dot 2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .ticket-arrive, .live-dot { animation: none; }
+}
+
+/* Diagram arrows (components/diagrams/FlowDiagram.tsx) carry a slow dashed flow. */
+@keyframes flow-dash { to { stroke-dashoffset: -22; } }
+.flow-dash { animation: flow-dash 1.2s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .flow-dash { animation: none; } }
+
+/* Scroll flow (components/Section.tsx): as a section scrolls in, its heading
+   and then its content glide up, and the label's dash draws itself. Uses
+   native scroll-driven animations; browsers without them show everything
+   in place, and reduced-motion visitors get no movement. */
+@keyframes flow-in { from { opacity: 0; transform: translateY(36px); } to { opacity: 1; transform: none; } }
+@keyframes flow-dashline { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .flow-in { animation: flow-in linear both; animation-timeline: view(); animation-range: entry 0% cover 28%; }
+    .flow-in-late { animation: flow-in linear both; animation-timeline: view(); animation-range: entry 5% cover 22%; }
+    .flow-dashline { animation: flow-dashline linear both; animation-timeline: view(); animation-range: entry 10% cover 35%; }
+  }
+}
+
+.scroll-progress { display: none; background: linear-gradient(90deg, #4165b7, #2f9e8f 55%, #c98a06); }
+@keyframes scroll-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .scroll-progress { display: block; animation: scroll-progress linear both; animation-timeline: scroll(root); }
+  }
+}
+
+/* Technology logo strips (components/Technologies.tsx): each track holds two
+   copies of its list and slides by exactly one copy, so the loop is seamless. */
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
-
-@keyframes marquee-reverse {
-  from { transform: translateX(-50%); }
-  to { transform: translateX(0); }
-}
-
-.marquee-track {
-  animation: marquee 32s linear infinite;
-}
-
-.marquee-track-reverse {
-  animation: marquee-reverse 32s linear infinite;
-}
-
-.marquee-track:hover,
-.marquee-track-reverse:hover {
-  animation-play-state: paused;
-}
-
+.marquee { animation: marquee 40s linear infinite; }
+.marquee-reverse { animation: marquee 40s linear infinite reverse; }
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track,
-  .marquee-track-reverse {
-    animation: none;
+  .marquee, .marquee-reverse { animation: none; flex-wrap: wrap; width: auto; }
+}
+
+/* ---- Admin control-plane component classes -------------------------- */
+
+/* Defined as a real utility (not a @layer components class) so it can be
+ * @apply'd from .button-control below — Tailwind v4 only allows @apply on
+ * actual utilities, unlike v3's looser custom-class composition. */
+@utility focus-ring {
+  @apply outline-none focus-visible:ring-2 focus-visible:ring-brand-300 focus-visible:ring-offset-1;
+}
+
+@layer components {
+  .admin-scope {
+    color-scheme: light;
+  }
+
+  .card {
+    @apply min-w-0 rounded-card border border-line bg-surface shadow-card;
+  }
+
+  .card-title {
+    @apply text-base font-semibold text-ink;
+  }
+
+  .section-icon {
+    @apply grid h-8 w-8 shrink-0 place-items-center rounded-control bg-brand-50 text-link;
+  }
+
+  .panel-heading {
+    @apply flex flex-wrap items-center justify-between gap-3 border-b border-line-soft px-5 py-4;
+  }
+
+  .page-title {
+    @apply break-words text-2xl font-semibold tracking-tight text-ink;
+  }
+
+  .button-control {
+    @apply focus-ring inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-control border px-4 text-body-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .table-scroll {
+    @apply max-w-full overflow-x-auto overscroll-x-contain;
+  }
+  .data-table {
+    @apply w-full border-collapse text-body-sm;
+  }
+  .data-table thead {
+    @apply bg-line-soft;
+  }
+  .table-heading {
+    @apply whitespace-nowrap border-b border-line px-5 py-3 text-left text-body-xs font-semibold text-ink-soft;
+  }
+  .table-cell {
+    @apply border-b border-line-soft px-5 py-3.5 text-ink;
+  }
+  .data-table tbody tr {
+    @apply transition-colors;
+  }
+  .data-table tbody tr:hover {
+    @apply bg-line-soft/60;
+  }
+  .data-table tbody tr:last-child > td {
+    border-bottom: 0;
+  }
+
+  .input {
+    display: block;
+    min-width: 0;
+    max-width: 100%;
+    @apply h-11 w-full rounded-control border border-line bg-surface px-4 text-body-sm text-ink
+           placeholder:text-ink-muted focus:border-brand-600 focus:outline-none
+           focus:ring-2 focus:ring-brand-50;
+  }
+  .input:disabled {
+    @apply cursor-not-allowed bg-line-soft text-ink-muted opacity-70;
   }
 }
+
+/* ---- TitanDesk replica (components/replica) ------------------------------
+ * The product's own light-theme tokens (TitanNetwork-main/web/src/index.css +
+ * tailwind.config.js), scoped to the replica. Tailwind v4 utilities read these
+ * variables, so markup copied from the product renders with its exact colors,
+ * radii, shadows and font. */
+.td-app {
+  --color-surface: rgb(255 255 255);
+  --color-canvas: rgb(250 250 250);
+  --color-ink: rgb(38 38 38);
+  --color-ink-soft: rgb(106 106 106);
+  --color-ink-muted: rgb(106 106 106);
+  --color-line: rgb(227 227 227);
+  --color-line-soft: rgb(245 245 245);
+  --color-link: rgb(59 93 169);
+  --color-brand-50: rgb(223 226 245);
+  --color-brand-100: #bdc5ef;
+  --color-brand-300: #879ce5;
+  --color-brand-500: #4c75d3;
+  --color-brand-600: #4165b7;
+  --color-ok: rgb(2 122 72);
+  --color-ok-bg: rgb(236 253 243);
+  --color-warn: rgb(153 112 1);
+  --color-warn-bg: rgb(255 246 219);
+  --color-bad: rgb(217 45 32);
+  --color-bad-bg: rgb(254 243 242);
+  --color-info: rgb(59 93 169);
+  --color-info-bg: rgb(223 226 245);
+  --radius-card: 12px;
+  --radius-control: 10px;
+  --shadow-card: 0 1px 2px rgb(16 24 40 / 0.04);
+  --shadow-pop: 0 16px 48px -12px rgb(16 24 40 / 0.2), 0 4px 12px rgb(16 24 40 / 0.06);
+  --logo-ink: 22 33 61;
+  font-family: "DM Sans Variable", "DM Sans", system-ui, sans-serif;
+  color: var(--color-ink);
+  letter-spacing: normal;
+}
+.td-app .card { min-width: 0; border-radius: var(--radius-card); border: 1px solid var(--color-line); background: var(--color-surface); box-shadow: var(--shadow-card); }
+.td-app .panel-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem; border-bottom: 1px solid var(--color-line-soft); padding: 1rem 1.25rem; }
+.td-app .card-title { font-size: 1rem; font-weight: 600; color: var(--color-ink); }
+.td-app .section-icon { display: grid; height: 2rem; width: 2rem; flex-shrink: 0; place-items: center; border-radius: var(--radius-control); background: var(--color-brand-50); color: var(--color-link); }
+@keyframes td-pop { from { opacity: 0; transform: scale(0.3); } to { opacity: 1; transform: scale(1); } }
+@keyframes td-draw { from { opacity: 0; stroke-dashoffset: 40; } to { opacity: 1; stroke-dashoffset: 0; } }
+@keyframes td-view { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.td-dot { animation: td-pop 250ms ease-out both; }
+.td-tick { stroke-dasharray: 40; animation: td-draw 350ms ease-out both; }
+.td-view { animation: td-view 140ms ease-out; }
+@keyframes td-bar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.td-bar { transform-origin: left; animation: td-bar 700ms ease-out both; }
+@media (prefers-reduced-motion: reduce) { .td-dot, .td-tick, .td-view, .td-bar { animation: none; } }

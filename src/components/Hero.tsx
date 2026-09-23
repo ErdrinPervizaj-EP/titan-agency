@@ -1,95 +1,45 @@
-import DashboardMock from './mocks/DashboardMock';
-import Counter from './Counter';
-import { useT } from '../i18n/useLang';
+import { useT, useLocalizedPath } from '../i18n/useLang';
 import { useParallax } from '../hooks/useParallax';
+import { primaryButton } from './Section';
+import FloatingIcons from './FloatingIcons';
+import TitanDeskReplica from './replica/TitanDeskReplica';
 
 export default function Hero() {
   const t = useT();
-  const ref = useParallax<HTMLDivElement>();
+  const lp = useLocalizedPath();
+  const ref = useParallax<HTMLElement>();
 
   return (
-    <section id="top" ref={ref} className="relative overflow-hidden pb-16 pt-16 sm:pb-24 sm:pt-20 lg:pt-28">
-      <div className="bg-grid pointer-events-none absolute inset-0 opacity-50" />
-      <div
-        className="pointer-events-none absolute -top-40 right-0 h-[420px] w-[420px] rounded-full opacity-20 blur-3xl transition-transform duration-300 ease-out sm:h-[560px] sm:w-[560px]"
-        style={{
-          background: 'radial-gradient(circle, #4f63d2 0%, transparent 70%)',
-          transform: 'translate(calc(var(--px, 0) * 18px), calc(var(--py, 0) * 18px))',
-        }}
-      />
-      <div
-        className="pointer-events-none absolute -top-20 left-[-10%] h-[320px] w-[320px] rounded-full opacity-15 blur-3xl transition-transform duration-300 ease-out sm:h-[420px] sm:w-[420px]"
-        style={{
-          background: 'radial-gradient(circle, #2fb3a6 0%, transparent 70%)',
-          transform: 'translate(calc(var(--px, 0) * -14px), calc(var(--py, 0) * -14px))',
-        }}
-      />
-
-      <div className="relative mx-auto max-w-7xl px-6">
-        <div className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-medium text-navy-500 shadow-sm sm:text-sm">
-            <span className="h-1.5 w-1.5 rounded-full bg-teal-500" />
-            {t.hero.eyebrow}
-          </span>
-
-          <h1 className="font-display text-balance mt-6 text-[2.1rem] font-bold leading-[1.12] text-navy-900 sm:mt-7 sm:text-5xl sm:leading-[1.08] lg:text-6xl">
-            {t.hero.title1} <span className="text-indigo-600">{t.hero.titleHighlight}</span> {t.hero.title2}
-          </h1>
-
-          <p className="mx-auto mt-5 max-w-2xl text-base text-navy-500 sm:mt-6 sm:text-lg">{t.hero.sub}</p>
-
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:mt-9 sm:flex-row sm:gap-4">
-            <a
-              href="#contact"
-              className="w-full rounded-lg bg-indigo-500 px-7 py-3.5 text-center text-sm font-semibold text-white shadow-xl shadow-indigo-500/25 transition hover:-translate-y-0.5 hover:bg-indigo-600 sm:w-auto"
-            >
-              {t.hero.ctaPrimary}
-            </a>
-            <a
-              href="#services"
-              className="w-full rounded-lg border border-slate-200 bg-white px-7 py-3.5 text-center text-sm font-semibold text-navy-900 shadow-sm transition hover:bg-slate-50 sm:w-auto"
-            >
-              {t.hero.ctaSecondary}
-            </a>
-          </div>
-
-          <div className="mx-auto mt-12 grid max-w-2xl grid-cols-2 gap-x-6 gap-y-8 sm:mt-14 sm:grid-cols-4">
-            {t.hero.stats.map(([stat, label]) => (
-              <div key={label} className="text-center sm:text-left">
-                <p className="font-display text-2xl font-bold text-navy-900 sm:text-3xl">
-                  <Counter value={stat} />
-                </p>
-                <p className="mt-1 text-xs text-navy-400 sm:text-sm">{label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Product screenshot in browser frame */}
-        <div className="relative mx-auto mt-12 max-w-5xl sm:mt-16">
-          <div className="absolute -inset-6 rounded-[32px] bg-gradient-to-tr from-indigo-500/10 via-transparent to-teal-500/10 blur-2xl" />
-          <div
-            className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl shadow-navy-900/10 transition-transform duration-300 ease-out"
-            style={{
-              transform:
-                'perspective(1400px) rotateX(calc(var(--py, 0) * -2deg)) rotateY(calc(var(--px, 0) * 2deg))',
-            }}
-          >
-            <div className="flex items-center gap-1.5 border-b border-slate-200 bg-slate-50 px-4 py-3">
-              <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
-              <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
-              <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
-              <span className="ml-4 hidden rounded-md border border-slate-200 bg-white px-3 py-1 text-xs text-navy-400 sm:inline-block">
-                app.titandesk.io/dashboard
-              </span>
-            </div>
-            <div className="overflow-x-auto">
-              <DashboardMock />
-            </div>
-          </div>
-          <p className="mt-4 text-center text-xs text-navy-400 sm:text-sm">{t.hero.pictureCaption}</p>
+    <section id="top" ref={ref} className="overflow-hidden">
+      <div className="relative isolate mx-auto max-w-6xl px-6 pb-4 pt-16 sm:pt-24">
+        <FloatingIcons />
+        <p className="text-sm font-medium text-navy-400">{t.hero.eyebrow}</p>
+        <h1 className="font-display text-balance mt-5 max-w-3xl text-4xl font-bold leading-[1.05] text-navy-900 sm:text-6xl">
+          {t.hero.title1} <span className="text-indigo-500">{t.hero.titleHighlight}</span> {t.hero.title2}
+        </h1>
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-500">{t.hero.sub}</p>
+        <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-4">
+          <a href={`${lp('/')}#contact`} className={primaryButton}>{t.hero.ctaPrimary}</a>
+          <a href={`${lp('/')}#services`} className="text-sm font-semibold text-navy-900 underline decoration-slate-300 underline-offset-4 transition-colors hover:decoration-navy-900">
+            {t.hero.ctaSecondary}
+          </a>
         </div>
       </div>
+
+      {/* The product (drawn, not a screenshot), tilted back in 3D. It turns slightly toward the
+          cursor and settles flat as the visitor scrolls into it. */}
+      <figure className="mx-auto mt-14 max-w-6xl px-6 [perspective:1600px] sm:mt-20">
+        <div
+          className="origin-top overflow-hidden rounded-xl border border-slate-200 bg-white shadow-[0_40px_80px_-40px_rgba(16,26,51,0.35)] transition-transform duration-500 ease-out will-change-transform"
+          style={{
+            transform:
+              'rotateX(calc((1 - var(--sp, 1)) * 14deg + var(--py, 0) * -3deg)) rotateY(calc(var(--px, 0) * 4deg)) scale(calc(0.96 + var(--sp, 1) * 0.04))',
+          }}
+        >
+          <TitanDeskReplica />
+        </div>
+        <figcaption className="mt-5 text-sm text-navy-400">{t.hero.pictureCaption}</figcaption>
+      </figure>
     </section>
   );
 }

@@ -33,4 +33,212 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://titannetwork.io/services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/services" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/services" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/services" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://titannetwork.io/de/services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/services" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/services" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/services" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://titannetwork.io/careers</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/careers" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/careers" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/careers" />
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://titannetwork.io/de/careers</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/careers" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/careers" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/careers" />
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://titannetwork.io/blog</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/blog" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/blog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/blog" />
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://titannetwork.io/de/blog</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/blog" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/blog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/blog" />
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://titannetwork.io/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/privacy" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/privacy" />
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://titannetwork.io/de/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/privacy" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/privacy" />
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://titannetwork.io/terms</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/terms" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/terms" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/terms" />
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://titannetwork.io/de/terms</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/terms" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/terms" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/terms" />
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://titannetwork.io/imprint</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/imprint" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/imprint" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/imprint" />
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://titannetwork.io/de/imprint</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/imprint" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/imprint" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/imprint" />
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://titannetwork.io/security</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/security" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/security" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/security" />
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://titannetwork.io/de/security</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/security" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/security" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/security" />
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://titannetwork.io/services/managed-it-support</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/services/managed-it-support" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/services/managed-it-support" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/services/managed-it-support" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://titannetwork.io/de/services/managed-it-support</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/services/managed-it-support" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/services/managed-it-support" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/services/managed-it-support" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://titannetwork.io/services/network-infrastructure</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/services/network-infrastructure" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/services/network-infrastructure" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/services/network-infrastructure" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://titannetwork.io/de/services/network-infrastructure</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/services/network-infrastructure" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/services/network-infrastructure" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/services/network-infrastructure" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://titannetwork.io/services/cybersecurity</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/services/cybersecurity" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/services/cybersecurity" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/services/cybersecurity" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://titannetwork.io/de/services/cybersecurity</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/services/cybersecurity" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/services/cybersecurity" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/services/cybersecurity" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://titannetwork.io/services/cloud-solutions</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/services/cloud-solutions" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/services/cloud-solutions" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/services/cloud-solutions" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://titannetwork.io/de/services/cloud-solutions</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/services/cloud-solutions" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/services/cloud-solutions" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/services/cloud-solutions" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://titannetwork.io/services/custom-software</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/services/custom-software" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/services/custom-software" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/services/custom-software" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://titannetwork.io/de/services/custom-software</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/services/custom-software" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/services/custom-software" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/services/custom-software" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://titannetwork.io/services/it-consulting-strategy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/services/it-consulting-strategy" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/services/it-consulting-strategy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/services/it-consulting-strategy" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://titannetwork.io/de/services/it-consulting-strategy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://titannetwork.io/services/it-consulting-strategy" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://titannetwork.io/de/services/it-consulting-strategy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://titannetwork.io/services/it-consulting-strategy" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>

@@ -2,5 +2,8 @@ User-agent: *
 Allow: /
 Disallow: /login
 Disallow: /de/login
+Disallow: /register
+Disallow: /de/register
+Disallow: /admin
 
 Sitemap: https://titannetwork.io/sitemap.xml

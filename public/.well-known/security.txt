@@ -1,0 +1,6 @@
+# How to report a security issue in titannetwork.io or TitanDesk (RFC 9116).
+Contact: mailto:hello@titannetwork.io
+Expires: 2027-09-23T00:00:00.000Z
+Preferred-Languages: en, de
+Policy: https://titannetwork.io/security
+Canonical: https://titannetwork.io/.well-known/security.txt

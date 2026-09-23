@@ -5,10 +5,14 @@ import ProductIcon from './ProductIcon';
 import LanguageSwitcher from './LanguageSwitcher';
 import { SERVICE_ICONS, SERVICE_COLORS } from '../lib/icons';
 import { useT, useLocalizedPath } from '../i18n/useLang';
+import { useSession } from '../lib/useSession';
+import { titanDeskAuth, TITANDESK_WEB_URL } from '../lib/titandesk-client';
+import { accountUrl } from '../lib/account-links';
 
 export default function Navbar() {
   const t = useT();
   const lp = useLocalizedPath();
+  const { user } = useSession();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
@@ -21,16 +25,15 @@ export default function Navbar() {
   }, []);
 
   const LINKS = [
-    { href: `${lp('/')}#case-studies`, label: t.nav.caseStudies },
     { href: `${lp('/')}#pricing`, label: t.nav.pricing },
     { href: `${lp('/')}#faq`, label: t.nav.faq },
+    { href: lp('/careers'), label: t.nav.careers },
     { href: `${lp('/')}#contact`, label: t.nav.contact },
   ];
 
   const PRODUCTS = [
     { key: 'titandesk' as const, name: 'TitanDesk', tagline: t.services.items[4].desc, status: t.nav.productStatusLive, to: lp('/titandesk') },
-    { key: 'titanshield' as const, name: 'TitanShield', tagline: t.productSuite.upcoming[0].tagline, status: t.nav.productStatusSoon, to: `${lp('/')}#products` },
-    { key: 'titancloud' as const, name: 'TitanCloud', tagline: t.productSuite.upcoming[1].tagline, status: t.nav.productStatusSoon, to: `${lp('/')}#products` },
+    ...t.productSuite.upcoming.map((product) => ({ key: product.key as 'hrm', name: product.name, tagline: product.tagline, status: t.nav.productStatusSoon, to: `${lp('/')}#products` })),
   ];
 
   return (
@@ -143,15 +146,34 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-4 lg:flex">
           <LanguageSwitcher />
-          <Link to={lp('/login')} className="text-sm font-medium text-navy-500 transition-colors hover:text-navy-900">
-            {t.nav.login}
-          </Link>
-          <a
-            href={`${lp('/')}#contact`}
-            className="rounded-lg bg-indigo-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-600"
-          >
-            {t.nav.cta}
-          </a>
+          {user ? (
+            <>
+              <button
+                onClick={() => void titanDeskAuth.logout().then(() => window.location.reload())}
+                className="text-sm font-medium text-navy-500 transition-colors hover:text-navy-900"
+              >
+                {t.nav.logOut}
+              </button>
+              <a
+                href={TITANDESK_WEB_URL}
+                className="rounded-lg bg-indigo-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-600"
+              >
+                {t.nav.goToWorkspace}
+              </a>
+            </>
+          ) : (
+            <>
+              <a href={accountUrl('login')} className="text-sm font-medium text-navy-500 transition-colors hover:text-navy-900">
+                {t.nav.login}
+              </a>
+              <a
+                href={`${lp('/')}#contact`}
+                className="rounded-lg bg-indigo-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-600"
+              >
+                {t.nav.cta}
+              </a>
+            </>
+          )}
         </div>
 
         <button
@@ -214,16 +236,36 @@ export default function Navbar() {
                 {l.label}
               </a>
             ))}
-            <Link to={lp('/login')} onClick={() => setOpen(false)} className="text-base font-medium text-navy-700">
-              {t.nav.login}
-            </Link>
-            <a
-              href={`${lp('/')}#contact`}
-              onClick={() => setOpen(false)}
-              className="mt-2 rounded-lg bg-indigo-500 px-5 py-3 text-center text-sm font-semibold text-white"
-            >
-              {t.nav.cta}
-            </a>
+            {user ? (
+              <>
+                <button
+                  onClick={() => { setOpen(false); void titanDeskAuth.logout().then(() => window.location.reload()); }}
+                  className="text-left text-base font-medium text-navy-700"
+                >
+                  {t.nav.logOut}
+                </button>
+                <a
+                  href={TITANDESK_WEB_URL}
+                  onClick={() => setOpen(false)}
+                  className="mt-2 rounded-lg bg-indigo-500 px-5 py-3 text-center text-sm font-semibold text-white"
+                >
+                  {t.nav.goToWorkspace}
+                </a>
+              </>
+            ) : (
+              <>
+                <a href={accountUrl('login')} onClick={() => setOpen(false)} className="text-base font-medium text-navy-700">
+                  {t.nav.login}
+                </a>
+                <a
+                  href={`${lp('/')}#contact`}
+                  onClick={() => setOpen(false)}
+                  className="mt-2 rounded-lg bg-indigo-500 px-5 py-3 text-center text-sm font-semibold text-white"
+                >
+                  {t.nav.cta}
+                </a>
+              </>
+            )}
           </nav>
         </div>
       )}

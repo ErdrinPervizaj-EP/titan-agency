@@ -88,7 +88,7 @@ flowchart LR
     V["Visitor"] --> SITE
     OP["Agency operator"] --> ADMIN
 
-    subgraph Pages["GitHub Pages (static)"]
+    subgraph Pages["Render (static)"]
         SITE["Public site<br/>(React 19 + Vite)"]
         ADMIN["/admin<br/>Super Admin console"]
     end
@@ -113,7 +113,7 @@ For the session cookie to travel cross-origin, the server's `TITANDESK_ALLOWED_O
 | Styling | Tailwind CSS v4 · lucide-react icons · self-hosted Inter & DM Sans |
 | SEO | react-helmet-async · JSON-LD · sitemap and robots |
 | Tooling | oxlint · TypeScript project references |
-| Hosting | GitHub Pages via GitHub Actions |
+| Hosting | Render static sites (public site and Super Admin as separate builds) |
 
 ## Getting started
 
@@ -139,11 +139,18 @@ Contact and support messages become tickets only when the server has `TITANDESK_
 
 ## Deployment
 
-```bash
-npm run build
-```
+Render builds this repo as two static sites, defined in the TitanNetwork repo's
+[`render.yaml`](https://github.com/ErdrinPervizaj-EP/TitanNetwork/blob/main/render.yaml)
+blueprint next to the TitanDesk server and app, and redeploys both on every push to `master`:
 
-[`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml) builds with `GITHUB_PAGES=true` (which sets the base path to `/titan-agency/`), copies `index.html` to `404.html` so client-side routes work on refresh, and publishes `dist/` to GitHub Pages on every push to `master`.
+| Site | Build | Address |
+|---|---|---|
+| Public site | `VITE_APP_MODE=marketing` (no Super Admin code in the bundle) | https://titan-agency.onrender.com |
+| Super Admin | `VITE_APP_MODE=admin` | https://titan-agency-admin.onrender.com/admin |
+
+Both call the TitanDesk server at `VITE_TITANDESK_API_URL`, whose `TITANDESK_ALLOWED_ORIGINS` lists both addresses.
+The GitHub Pages workflow in `.github/workflows/deploy.yml` still works (`GITHUB_PAGES=true` sets the base path to
+`/titan-agency/`) if you'd rather publish there.
 
 ## Repo structure
 
