@@ -437,6 +437,11 @@ export const translations = {
       back: 'All posts',
       notFound: 'That post does not exist or is no longer published.',
     },
+    notFound: {
+      title: 'Page not found',
+      body: 'The page you were looking for does not exist or has moved.',
+      home: 'Back to the homepage',
+    },
     proof: {
       tag: 'Clients',
       title: 'Teams that run on Titan Network',
@@ -902,6 +907,11 @@ export const translations = {
       readMore: 'Beitrag lesen',
       back: 'Alle Beiträge',
       notFound: 'Diesen Beitrag gibt es nicht oder er ist nicht mehr veröffentlicht.',
+    },
+    notFound: {
+      title: 'Seite nicht gefunden',
+      body: 'Die gesuchte Seite existiert nicht oder wurde verschoben.',
+      home: 'Zurück zur Startseite',
     },
     proof: {
       tag: 'Kunden',

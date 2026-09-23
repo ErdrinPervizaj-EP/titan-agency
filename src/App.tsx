@@ -18,6 +18,7 @@ const EnterprisePage = lazy(() => import('./pages/EnterprisePage'));
 const LegalPage = lazy(() => import('./pages/LegalPage'));
 const BlogListPage = lazy(() => import('./pages/BlogPages').then((m) => ({ default: m.BlogListPage })));
 const BlogPostPage = lazy(() => import('./pages/BlogPages').then((m) => ({ default: m.BlogPostPage })));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 /**
  * Which parts this build contains (VITE_APP_MODE):
  *  - "marketing": the public site only. The Super Admin console is not in the
@@ -79,6 +80,7 @@ function MarketingSite() {
           <Route path="/de/register" element={<AccountRedirect page="signup" />} />
           <Route path="/forgot-password" element={<AccountRedirect page="forgotPassword" />} />
           <Route path="/de/forgot-password" element={<AccountRedirect page="forgotPassword" />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
         </Suspense>
       </main>
