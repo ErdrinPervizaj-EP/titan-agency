@@ -32,9 +32,9 @@ export default function TitanDeskPage() {
       />
 
       {/* Hero: headline, then the product itself */}
-      <section ref={heroRef} className="overflow-hidden">
-        <div className="relative isolate mx-auto max-w-6xl px-6 pb-4 pt-16 sm:pt-24">
-          <FloatingIcons />
+      <section ref={heroRef} className="relative isolate overflow-hidden">
+        <FloatingIcons />
+        <div className="relative mx-auto max-w-6xl px-6 pb-4 pt-16 sm:pt-24">
           <p className="text-sm font-medium text-navy-400">
             {p.partOf}{' '}
             <Link to={lp('/')} className="font-semibold text-indigo-500 hover:text-indigo-600">Titan Network</Link>

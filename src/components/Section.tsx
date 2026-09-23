@@ -58,12 +58,14 @@ export default function Section({
 /** Top of an inner page: small label, big left-aligned title, one intro line. */
 export function PageHeader({ label, title, intro, children }: { label: ReactNode; title: string; intro?: string; children?: ReactNode }) {
   return (
-    <header className="relative isolate mx-auto max-w-6xl px-6 pb-16 pt-16 sm:pb-20 sm:pt-24">
+    <header className="relative isolate overflow-hidden">
       <FloatingIcons />
+      <div className="mx-auto max-w-6xl px-6 pb-16 pt-16 sm:pb-20 sm:pt-24">
       <div className="text-sm font-medium text-navy-400">{label}</div>
       <h1 className="font-display text-balance mt-5 max-w-4xl text-4xl font-bold leading-[1.08] text-navy-900 sm:text-5xl">{title}</h1>
       {intro && <p className="mt-6 max-w-2xl text-lg leading-relaxed text-navy-500">{intro}</p>}
       {children}
+      </div>
     </header>
   );
 }

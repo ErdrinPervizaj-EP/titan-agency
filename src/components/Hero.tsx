@@ -10,9 +10,9 @@ export default function Hero() {
   const ref = useParallax<HTMLElement>();
 
   return (
-    <section id="top" ref={ref} className="overflow-hidden">
-      <div className="relative isolate mx-auto max-w-6xl px-6 pb-4 pt-16 sm:pt-24">
-        <FloatingIcons />
+    <section id="top" ref={ref} className="relative isolate overflow-hidden">
+      <FloatingIcons />
+      <div className="relative mx-auto max-w-6xl px-6 pb-4 pt-16 sm:pt-24">
         <p className="text-sm font-medium text-navy-400">{t.hero.eyebrow}</p>
         <h1 className="font-display text-balance mt-5 max-w-3xl text-4xl font-bold leading-[1.05] text-navy-900 sm:text-6xl">
           {t.hero.title1} <span className="text-indigo-500">{t.hero.titleHighlight}</span> {t.hero.title2}
