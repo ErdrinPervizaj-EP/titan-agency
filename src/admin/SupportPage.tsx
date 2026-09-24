@@ -21,10 +21,9 @@ export default function SupportPage() {
 
   useEffect(() => {
     const controller = new AbortController();
-    setError('');
     const params = new URLSearchParams(searchParams); params.set('pageSize', '8');
     Promise.all([superAdminApi.resource('support', params, controller.signal), superAdminApi.resource('users', params, controller.signal)])
-      .then(([supportResult, userResult]) => { setCases(supportResult.data); setUsers(userResult.data); })
+      .then(([supportResult, userResult]) => { setCases(supportResult.data); setUsers(userResult.data); setError(''); })
       .catch((caught: unknown) => {
         if (caught instanceof DOMException && caught.name === 'AbortError') return;
         setError(caught instanceof Error ? caught.message : 'Unable to load support workspace');

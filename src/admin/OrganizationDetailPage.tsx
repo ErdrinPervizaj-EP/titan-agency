@@ -21,16 +21,18 @@ const organizationActions = [
 
 export default function OrganizationDetailPage() {
   const { id = '' } = useParams();
-  const [data, setData] = useState<Record<string, unknown> | null>(null);
-  const [error, setError] = useState('');
+  // Keyed by id: after navigating to another record, the old one reads as not loaded.
+  const [loaded, setLoaded] = useState<{ id: string; data: Record<string, unknown> | null; error: string } | null>(null);
+  const data = loaded?.id === id ? loaded.data : null;
+  const error = loaded?.id === id ? loaded.error : '';
   const [revision, setRevision] = useState(0);
   const [action, setAction] = useState<SensitiveActionSpec | null>(null);
 
   useEffect(() => {
-    const controller = new AbortController(); setData(null); setError('');
-    superAdminApi.organization(id, controller.signal).then(({ data: result }) => setData(result)).catch((caught: unknown) => {
+    const controller = new AbortController();
+    superAdminApi.organization(id, controller.signal).then(({ data: result }) => setLoaded({ id, data: result, error: '' })).catch((caught: unknown) => {
       if (caught instanceof DOMException && caught.name === 'AbortError') return;
-      setError(caught instanceof Error ? caught.message : 'Unable to load organization');
+      setLoaded(current => ({ id, data: current?.id === id ? current.data : null, error: caught instanceof Error ? caught.message : 'Unable to load organization' }));
     });
     return () => controller.abort();
   }, [id, revision]);

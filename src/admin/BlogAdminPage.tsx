@@ -18,10 +18,16 @@ export default function BlogAdminPage() {
   const [confirm, setConfirm] = useState<'save' | 'delete' | null>(null);
 
   const load = useCallback(async () => {
-    setError('');
-    try { setPosts(await websiteApi.posts()); } catch (caught) { setError(caught instanceof Error ? caught.message : 'Could not load posts.'); }
+    try { setPosts(await websiteApi.posts()); setError(''); } catch (caught) { setError(caught instanceof Error ? caught.message : 'Could not load posts.'); }
   }, []);
-  useEffect(() => { void load(); }, [load]);
+  // First load; ignores a response that lands after the page closed. `load` handles retry and refresh-after-save.
+  useEffect(() => {
+    let active = true;
+    websiteApi.posts()
+      .then(rows => { if (active) setPosts(rows); })
+      .catch((caught: unknown) => { if (active) setError(caught instanceof Error ? caught.message : 'Could not load posts.'); });
+    return () => { active = false; };
+  }, []);
 
   if (error) return <ErrorState message={error} onRetry={() => void load()} />;
   if (!posts) return <LoadingState />;

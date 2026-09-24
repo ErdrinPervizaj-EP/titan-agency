@@ -14,8 +14,7 @@ export default function OverviewPage() {
 
   useEffect(() => {
     const controller = new AbortController();
-    setError('');
-    superAdminApi.overview(searchParams, controller.signal).then(({ data }) => setPayload(data)).catch((caught: unknown) => {
+    superAdminApi.overview(searchParams, controller.signal).then(({ data }) => { setPayload(data); setError(''); }).catch((caught: unknown) => {
       if (caught instanceof DOMException && caught.name === 'AbortError') return;
       setError(caught instanceof Error ? caught.message : 'Unable to load overview');
     });

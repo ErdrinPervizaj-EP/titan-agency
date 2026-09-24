@@ -76,16 +76,23 @@ export default function WebsitePage() {
   const [publishing, setPublishing] = useState(false);
 
   const load = useCallback(async () => {
-    setError('');
     try {
       const data = await websiteApi.content();
       setSnapshot(data);
       setDraft(structuredClone(data));
+      setError('');
     } catch (caught) {
       setError(caught instanceof Error ? caught.message : 'Could not load website content.');
     }
   }, []);
-  useEffect(() => { void load(); }, [load]);
+  // First load; ignores a response that lands after the page closed. `load` handles retry.
+  useEffect(() => {
+    let active = true;
+    websiteApi.content()
+      .then(data => { if (active) { setSnapshot(data); setDraft(structuredClone(data)); } })
+      .catch((caught: unknown) => { if (active) setError(caught instanceof Error ? caught.message : 'Could not load website content.'); });
+    return () => { active = false; };
+  }, []);
 
   const dirty = useMemo(() => Boolean(snapshot && draft && JSON.stringify(snapshot[tab].data) !== JSON.stringify(draft[tab].data)), [snapshot, draft, tab]);
 
